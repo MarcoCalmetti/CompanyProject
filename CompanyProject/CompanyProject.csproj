@@ -49,6 +49,8 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -75,6 +77,36 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\CompanyDatabase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDatabase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyDatabase.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyDatabase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDatabase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Item.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderHeader.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderRow.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderState.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reseller.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -98,6 +130,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\CompanyDatabase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CompanyDatabase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\CompanyDatabase.edmx.diagram">
+      <DependentUpon>CompanyDatabase.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -109,8 +148,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\CompanyDatabase.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CompanyDatabase.edmx</DependentUpon>
+      <LastGenOutput>CompanyDatabase.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CompanyDatabase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CompanyDatabase.edmx</DependentUpon>
+      <LastGenOutput>CompanyDatabase.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

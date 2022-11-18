@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CompanyProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Volume" Type="float" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="LeadTime" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderHeaders">
+          <Key>
+            <PropertyRef Name="OrderHeaderId" />
+          </Key>
+          <Property Name="OrderHeaderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResellerId" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="OrderStatus" Type="int" />
+          <Property Name="OrderReceipt" Type="datetime" Nullable="false" />
+          <Property Name="ProductionStartDate" Type="datetime" />
+          <Property Name="ProductionEndDate" Type="datetime" />
+          <Property Name="SalesOrderReference" Type="int" />
+          <Property Name="Note" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OrderRows">
+          <Key>
+            <PropertyRef Name="OrderRowId" />
+          </Key>
+          <Property Name="OrderRowId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderHeaderId" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resellers">
+          <Key>
+            <PropertyRef Name="ResellerID" />
+          </Key>
+          <Property Name="ResellerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessName" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="VAT" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TelephoneNumber" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__OrderHead__Order__3D5E1FD2">
+          <End Role="OrderStates" Type="Self.OrderStates" Multiplicity="0..1" />
+          <End Role="OrderHeaders" Type="Self.OrderHeaders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderHeaders">
+              <PropertyRef Name="OrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderHead__Resel__3C69FB99">
+          <End Role="Resellers" Type="Self.Resellers" Multiplicity="0..1" />
+          <End Role="OrderHeaders" Type="Self.OrderHeaders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resellers">
+              <PropertyRef Name="ResellerID" />
+            </Principal>
+            <Dependent Role="OrderHeaders">
+              <PropertyRef Name="ResellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderRows__ItemI__412EB0B6">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="OrderRows" Type="Self.OrderRows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderRows">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderRows__Order__403A8C7D">
+          <End Role="OrderHeaders" Type="Self.OrderHeaders" Multiplicity="0..1" />
+          <End Role="OrderRows" Type="Self.OrderRows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderHeaders">
+              <PropertyRef Name="OrderHeaderId" />
+            </Principal>
+            <Dependent Role="OrderRows">
+              <PropertyRef Name="OrderHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompanyProjectModelStoreContainer">
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderHeaders" EntityType="Self.OrderHeaders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderRows" EntityType="Self.OrderRows" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStates" EntityType="Self.OrderStates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resellers" EntityType="Self.Resellers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OrderHead__Order__3D5E1FD2" Association="Self.FK__OrderHead__Order__3D5E1FD2">
+            <End Role="OrderStates" EntitySet="OrderStates" />
+            <End Role="OrderHeaders" EntitySet="OrderHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderHead__Resel__3C69FB99" Association="Self.FK__OrderHead__Resel__3C69FB99">
+            <End Role="Resellers" EntitySet="Resellers" />
+            <End Role="OrderHeaders" EntitySet="OrderHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderRows__ItemI__412EB0B6" Association="Self.FK__OrderRows__ItemI__412EB0B6">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="OrderRows" EntitySet="OrderRows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderRows__Order__403A8C7D" Association="Self.FK__OrderRows__Order__403A8C7D">
+            <End Role="OrderHeaders" EntitySet="OrderHeaders" />
+            <End Role="OrderRows" EntitySet="OrderRows" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CompanyProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Volume" Type="Double" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="LeadTime" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderRows" Relationship="Self.FK__OrderRows__ItemI__412EB0B6" FromRole="Items" ToRole="OrderRows" />
+        </EntityType>
+        <EntityType Name="OrderHeader">
+          <Key>
+            <PropertyRef Name="OrderHeaderId" />
+          </Key>
+          <Property Name="OrderHeaderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResellerId" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="OrderStatus" Type="Int32" />
+          <Property Name="OrderReceipt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductionStartDate" Type="DateTime" Precision="3" />
+          <Property Name="ProductionEndDate" Type="DateTime" Precision="3" />
+          <Property Name="SalesOrderReference" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderState" Relationship="Self.FK__OrderHead__Order__3D5E1FD2" FromRole="OrderHeaders" ToRole="OrderStates" />
+          <NavigationProperty Name="Reseller" Relationship="Self.FK__OrderHead__Resel__3C69FB99" FromRole="OrderHeaders" ToRole="Resellers" />
+          <NavigationProperty Name="OrderRows" Relationship="Self.FK__OrderRows__Order__403A8C7D" FromRole="OrderHeaders" ToRole="OrderRows" />
+        </EntityType>
+        <EntityType Name="OrderRow">
+          <Key>
+            <PropertyRef Name="OrderRowId" />
+          </Key>
+          <Property Name="OrderRowId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderHeaderId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__OrderRows__ItemI__412EB0B6" FromRole="OrderRows" ToRole="Items" />
+          <NavigationProperty Name="OrderHeader" Relationship="Self.FK__OrderRows__Order__403A8C7D" FromRole="OrderRows" ToRole="OrderHeaders" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK__OrderHead__Order__3D5E1FD2" FromRole="OrderStates" ToRole="OrderHeaders" />
+        </EntityType>
+        <EntityType Name="Reseller">
+          <Key>
+            <PropertyRef Name="ResellerID" />
+          </Key>
+          <Property Name="ResellerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VAT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TelephoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK__OrderHead__Resel__3C69FB99" FromRole="Resellers" ToRole="OrderHeaders" />
+        </EntityType>
+        <Association Name="FK__OrderRows__ItemI__412EB0B6">
+          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="OrderRows" Type="Self.OrderRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderRows">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderHead__Order__3D5E1FD2">
+          <End Role="OrderStates" Type="Self.OrderState" Multiplicity="0..1" />
+          <End Role="OrderHeaders" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderHeaders">
+              <PropertyRef Name="OrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderHead__Resel__3C69FB99">
+          <End Role="Resellers" Type="Self.Reseller" Multiplicity="0..1" />
+          <End Role="OrderHeaders" Type="Self.OrderHeader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resellers">
+              <PropertyRef Name="ResellerID" />
+            </Principal>
+            <Dependent Role="OrderHeaders">
+              <PropertyRef Name="ResellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderRows__Order__403A8C7D">
+          <End Role="OrderHeaders" Type="Self.OrderHeader" Multiplicity="0..1" />
+          <End Role="OrderRows" Type="Self.OrderRow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderHeaders">
+              <PropertyRef Name="OrderHeaderId" />
+            </Principal>
+            <Dependent Role="OrderRows">
+              <PropertyRef Name="OrderHeaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompanyContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="OrderHeaders" EntityType="Self.OrderHeader" />
+          <EntitySet Name="OrderRows" EntityType="Self.OrderRow" />
+          <EntitySet Name="OrderStates" EntityType="Self.OrderState" />
+          <EntitySet Name="Resellers" EntityType="Self.Reseller" />
+          <AssociationSet Name="FK__OrderRows__ItemI__412EB0B6" Association="Self.FK__OrderRows__ItemI__412EB0B6">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="OrderRows" EntitySet="OrderRows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderHead__Order__3D5E1FD2" Association="Self.FK__OrderHead__Order__3D5E1FD2">
+            <End Role="OrderStates" EntitySet="OrderStates" />
+            <End Role="OrderHeaders" EntitySet="OrderHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderHead__Resel__3C69FB99" Association="Self.FK__OrderHead__Resel__3C69FB99">
+            <End Role="Resellers" EntitySet="Resellers" />
+            <End Role="OrderHeaders" EntitySet="OrderHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderRows__Order__403A8C7D" Association="Self.FK__OrderRows__Order__403A8C7D">
+            <End Role="OrderHeaders" EntitySet="OrderHeaders" />
+            <End Role="OrderRows" EntitySet="OrderRows" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CompanyProjectModelStoreContainer" CdmEntityContainer="CompanyContext">
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="CompanyProjectModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="LeadTime" ColumnName="LeadTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderHeaders">
+            <EntityTypeMapping TypeName="CompanyProjectModel.OrderHeader">
+              <MappingFragment StoreEntitySet="OrderHeaders">
+                <ScalarProperty Name="OrderHeaderId" ColumnName="OrderHeaderId" />
+                <ScalarProperty Name="ResellerId" ColumnName="ResellerId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderReceipt" ColumnName="OrderReceipt" />
+                <ScalarProperty Name="ProductionStartDate" ColumnName="ProductionStartDate" />
+                <ScalarProperty Name="ProductionEndDate" ColumnName="ProductionEndDate" />
+                <ScalarProperty Name="SalesOrderReference" ColumnName="SalesOrderReference" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderRows">
+            <EntityTypeMapping TypeName="CompanyProjectModel.OrderRow">
+              <MappingFragment StoreEntitySet="OrderRows">
+                <ScalarProperty Name="OrderRowId" ColumnName="OrderRowId" />
+                <ScalarProperty Name="OrderHeaderId" ColumnName="OrderHeaderId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStates">
+            <EntityTypeMapping TypeName="CompanyProjectModel.OrderState">
+              <MappingFragment StoreEntitySet="OrderStates">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resellers">
+            <EntityTypeMapping TypeName="CompanyProjectModel.Reseller">
+              <MappingFragment StoreEntitySet="Resellers">
+                <ScalarProperty Name="ResellerID" ColumnName="ResellerID" />
+                <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="TelephoneNumber" ColumnName="TelephoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
