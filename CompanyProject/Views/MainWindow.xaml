@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Grid.Row="0">Resellers</Button>
+        <Button Grid.Column="0" Grid.Row="1">Items</Button>
+        <Button Grid.Column="0" Grid.Row="2">Orders</Button>
+
+        <!--<Image Width="600" Grid.Column="1" Grid.Row="0" Grid.RawSpan="3" Margin="10">
+            <Image.Source>
+                <BitmapImage UriSource=".\Immagine\Logo.png"/> caricare il logo in una cartella Immagine e tutto dovrebbe funzionare cosi com'è
+        aggiustare le dimensioni dell'immagine
+            </Image.Source>
+        </Image>-->
+
+
     </Grid>
 </Window>
