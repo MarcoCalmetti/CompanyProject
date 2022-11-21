@@ -23,13 +23,14 @@
         
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Resellers</Label>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by business name:</Label>
-        <TextBox x:Name="tbBusinessName"  Grid.Column="0" Grid.Row="1" Margin="22"></TextBox>
+        <TextBox x:Name="tbBusinessName"  Grid.Column="0" Grid.Row="1" Margin="22" Text="{Binding BuisnessName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by VAT:</Label>
-        <TextBox x:Name="tbVAT"  Grid.Column="1" Grid.Row="1"  Margin="22"></TextBox>
+        <TextBox x:Name="tbVAT"  Grid.Column="1" Grid.Row="1"  Margin="22" Text="{Binding VAT, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by city:</Label>
-        <ComboBox x:Name="cbCity" Grid.Column="2" Grid.Row="1" Margin="22"></ComboBox>
+        <ComboBox x:Name="cbCity" Grid.Column="2" Grid.Row="1" Margin="22" ItemsSource="{Binding ListCity}" SelectedItem = "{Binding SelectedCity}"></ComboBox>
         <Button x:Name="bResetFiltersRL" Grid.Column="3" Grid.Row="1" Margin="20">ResetFilters</Button>
-        <DataGrid x:Name="ResellersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="20" AutoGenerateColumns="False">
+        <DataGrid x:Name="ResellersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="20" AutoGenerateColumns="False"
+                  ItemsSource="{Binding ListResellers}" SelectedItem="{Binding SelectedReseller}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header=" ResellerID " />
                 <DataGridTextColumn Header=" BusinessName " />
