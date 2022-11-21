@@ -69,6 +69,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Views\ItemsListView.xaml.cs">
       <DependentUpon>ItemsListView.xaml</DependentUpon>
     </Compile>
@@ -168,7 +169,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
