@@ -22,8 +22,8 @@
         
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Resellers</Label>
 
-        <TextBox x:Name="tbBusinessName"  Grid.Column="0" Grid.Row="1" Margin="20">BusinessName</TextBox>
-        <TextBox x:Name="tbVAT"  Grid.Column="1" Grid.Row="1"  Margin="20">VAT</TextBox>
+        <TextBox x:Name="tbBusinessName"  Grid.Column="0" Grid.Row="1" Margin="20"></TextBox>
+        <TextBox x:Name="tbVAT" Grid.Column="1" Grid.Row="1"  Margin="20">VAT</TextBox>
         <ComboBox x:Name="cbCity" Grid.Column="2" Grid.Row="1" Margin="20">City</ComboBox>
         <DataGrid x:Name="ResellersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="20" AutoGenerateColumns="False">
             <DataGrid.Columns>
