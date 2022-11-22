@@ -71,6 +71,7 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ItemListViewModel.cs" />
     <Compile Include="ViewModels\OrderListViewModel.cs" />
     <Compile Include="ViewModels\ResellerListViewModel.cs" />
     <Compile Include="Views\ItemsListView.xaml.cs">

@@ -9,7 +9,7 @@ namespace CompanyProject.ViewModels
 {
     class OrderListViewModel : BaseViewModel
     {
-        #region Proprietà 
+        #region Properties
 
         private List<OrderHeader> list_order;
 
@@ -77,7 +77,7 @@ namespace CompanyProject.ViewModels
 
         #endregion
 
-        #region Costruttore
+        #region Constructor
 
         public OrderListViewModel()
         {
@@ -87,7 +87,8 @@ namespace CompanyProject.ViewModels
 
 
         #endregion
-        #region Metodi
+
+        #region Methods
         private void LoadData()
         {
            
