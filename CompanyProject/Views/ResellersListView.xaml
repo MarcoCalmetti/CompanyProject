@@ -23,7 +23,8 @@
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         
-        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Resellers</Label>
+        <Label  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Resellers</Label>
+        <Button x:Name="buttNewReseller" Grid.Column="3" Grid.Row="0" Margin="20" >Add New Reseller</Button>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by business name:</Label>
         <TextBox x:Name="tbBusinessName"  Grid.Column="0" Grid.Row="1" Margin="22" Text="{Binding BuisnessName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by VAT:</Label>
