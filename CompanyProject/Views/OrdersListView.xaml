@@ -48,6 +48,7 @@
                 <DataGridTextColumn Header=" Order Id (by resellers) " />
                 <DataGridTextColumn Header=" Order Id " />
                 <DataGridTextColumn Header=" Total Price " />
+                <DataGridTextColumn Header=" Lead Time " />
                 <DataGridTextColumn Header=" Notes " />
             </DataGrid.Columns>
         </DataGrid>
