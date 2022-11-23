@@ -69,18 +69,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-	  <Compile Include="Controllers\CompanyController.cs" />
-	  <Compile Include="ViewModels\BaseViewModel.cs" />
-	  <Compile Include="ViewModels\ResellerListViewModel.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ResellerListViewModel.cs" />
+    <Compile Include="Views\AddEditOrder.xaml.cs">
+      <DependentUpon>AddEditOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEditReseller.xaml.cs">
+      <DependentUpon>AddEditReseller.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditNewView.xaml.cs">
+      <DependentUpon>EditNewView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ItemsListView.xaml.cs">
       <DependentUpon>ItemsListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrdersListView.xaml.cs">
       <DependentUpon>OrdersListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrderSummary.xaml.cs">
+      <DependentUpon>OrderSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ResellersListView.xaml.cs">
       <DependentUpon>ResellersListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ResellerSummary.xaml.cs">
+      <DependentUpon>ResellerSummary.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AddEditOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddEditReseller.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditNewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ItemsListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,7 +158,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OrderSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ResellersListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResellerSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
