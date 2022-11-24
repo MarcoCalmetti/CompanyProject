@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CompanyProject.Controllers;
 using CompanyProject.Models;
 
 namespace CompanyProject.ViewModels
@@ -14,9 +15,9 @@ namespace CompanyProject.ViewModels
         #region Properties 
 
         //Creo Le proprietà con cui vado a fare il binding
-        private List<Reseller> list_rivenditori;
+        private Task<List<Reseller>> list_rivenditori;
 
-        public List<Reseller> ListResellers // è la lista che mi contiene tutti i reseller
+        public Task<List<Reseller>> ListResellers // è la lista che mi contiene tutti i reseller
         {
             get { return list_rivenditori; }
             set { list_rivenditori = value; NotifyPropertyChanged("ListResellers"); }
@@ -51,7 +52,7 @@ namespace CompanyProject.ViewModels
         public List<string> ListCity // è la lista di città,
         {
             get { return list_city ; }
-            set { list_city = value; }
+            set { list_city = value; NotifyPropertyChanged("ListCity"); }
         }
 
         private string city;
@@ -59,22 +60,40 @@ namespace CompanyProject.ViewModels
         public string SelectedCity // è la singola città selezionata
         {
             get { return city; }
-            set { city = value; }
+            set { city = value; NotifyPropertyChanged(""); }
         }
+        private int page;
+
+        public int Page
+        {
+            get { return page; }
+            set { page = value; NotifyPropertyChanged("Page"); }
+        }
+
+        private int pagesize = 10;
+
+        public int PageSize
+        {
+            get { return pagesize = 10; }
+            set { pagesize = 10; }
+        }
+
         #endregion
 
         #region Constructor
 
         public ResellerListViewModel()
         {
+            Page = 1;
             LoadData();
         }
         #endregion
 
         #region Methods
-        public void LoadData()
+        public async Task LoadData()
         {
-          // ListResellers = Metodo del controller
+            await (ListResellers = CompanyController.GetAllResellers(BuisnessName, VAT, SelectedCity, Page, PageSize));
+            
         }
 
         public void ResetFilter()
