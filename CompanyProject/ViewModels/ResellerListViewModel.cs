@@ -63,7 +63,7 @@ namespace CompanyProject.ViewModels
         }
         #endregion
 
-        #region Costruttore
+        #region Constructor
 
         public ResellerListViewModel()
         {
@@ -71,7 +71,7 @@ namespace CompanyProject.ViewModels
         }
         #endregion
 
-        #region Metodi
+        #region Methods
         public void LoadData()
         {
           // ListResellers = Metodo del controller

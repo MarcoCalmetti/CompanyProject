@@ -69,18 +69,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\CompanyController.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\ResellerListViewModel.cs" />
-    <Compile Include="Views\AddEditOrder.xaml.cs">
-      <DependentUpon>AddEditOrder.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddEditReseller.xaml.cs">
-      <DependentUpon>AddEditReseller.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EditNewView.xaml.cs">
-      <DependentUpon>EditNewView.xaml</DependentUpon>
-    </Compile>
+	  <Compile Include="Controllers\CompanyController.cs" />
+	  <Compile Include="ViewModels\BaseViewModel.cs" />
+	  <Compile Include="ViewModels\ResellerListViewModel.cs" />
     <Compile Include="Views\ItemsListView.xaml.cs">
       <DependentUpon>ItemsListView.xaml</DependentUpon>
     </Compile>
