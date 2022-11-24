@@ -20,9 +20,11 @@ namespace CompanyProject.Controllers
                         .Select(s => s)
                         .Where(s => Name != null ? s.Name.Contains(Name) : true)
                         .Where(s => Code != null ? s.Code.Contains(Code) : true)
+                        .OrderBy(s => s.Id)
                         .Skip((page - 1) * pageSize)
                         .Take(pageSize)
                         .ToListAsync();
+                    
                 }
             }
             catch (ArgumentException e)
