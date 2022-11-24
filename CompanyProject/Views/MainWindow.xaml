@@ -16,9 +16,9 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="0">Resellers</Button>
-        <Button Grid.Column="0" Grid.Row="1">Items</Button>
-        <Button Grid.Column="0" Grid.Row="2">Orders</Button>
+        <Button Grid.Column="0" Grid.Row="0" Click="Button_Click">Resellers</Button>
+        <Button Grid.Column="0" Grid.Row="1" Click="Button_Click_1">Orders</Button>
+        <Button Grid.Column="0" Grid.Row="2" Click="Button_Click_2">Items</Button>
 
         <!--<Image Width="600" Grid.Column="1" Grid.Row="0" Grid.RawSpan="3" Margin="10">
             <Image.Source>
@@ -27,6 +27,6 @@
             </Image.Source>
         </Image>-->
 
-
+        <Frame x:Name="NavigationFrame" Grid.Row="0" Grid.Column="0" Source="./LoginView.xaml" NavigationUIVisibility="Hidden" ></Frame>
     </Grid>
 </Window>
