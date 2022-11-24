@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CompanyProject.Models;
 
 namespace CompanyProject.Controllers
@@ -16,14 +17,18 @@ namespace CompanyProject.Controllers
             {
                 using (CompanyContext context = new CompanyContext())
                 {
-                    return await context.Resellers
+                    var x = await context.Resellers
                         .Select(s => s)
                         .Where(s => BusinessName != null ? s.BusinessName.Contains(BusinessName) : true)
                         .Where(s => VAT != null ? s.VAT.Contains(VAT) : true)
                         .Where(s=> City != null ? s.City == City : true)
+                        .OrderBy(s=>s.ResellerID)
                         .Skip((page - 1) * pageSize)
                         .Take(pageSize)
                         .ToListAsync();
+                    MessageBox.Show(x.ToString());
+
+                    return x;
                 }
             }
             catch (ArgumentException e)
@@ -76,12 +81,6 @@ namespace CompanyProject.Controllers
                     if (await context.Resellers.Select(s => s).Where(s => VAT != null ? s.BusinessName.Contains(VAT) : true).CountAsync() > 0)
                         throw new ArgumentException("There is already another company with the same VAT");
 
-                    if (!TelephoneNumber.All(char.IsDigit))
-                        throw new ArgumentException("The telephone format is not correct");
-
-                    if (!EmailFormatChecker(Mail))
-                        throw new ArgumentException("The email format is not correct");
-
                     if (await context.Resellers.Select(s => s).Where(s => Mail != null ? s.BusinessName.Contains(Mail) : true).CountAsync() > 0)
                         throw new ArgumentException("There is already another company with the same Mail");
 
@@ -95,13 +94,6 @@ namespace CompanyProject.Controllers
             {
                 throw e;
             }
-        }
-
-        private static bool EmailFormatChecker(string email)
-        {
-            if (email.Contains("@") && email.Substring(0, email.IndexOf("@")).Length > 0 && email.Substring(email.IndexOf("@"), email.Length - 1).Contains("."))
-                return true;
-            return false;
         }
 
         public async static Task Update(Reseller ResellerToUpdate)
@@ -130,6 +122,7 @@ namespace CompanyProject.Controllers
                     using (CompanyContext context = new CompanyContext())
                     {
                         context.Resellers.Remove(ResellerToDelete);
+                        await context.SaveChangesAsync();
                         return true;
                     }
                 }
