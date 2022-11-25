@@ -25,20 +25,20 @@
 
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Items</Label>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by item name:</Label>
-        <TextBox x:Name="tbItemName"  Grid.Column="0" Grid.Row="1" Margin="22" ></TextBox>
-        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by code:</Label>
-        <TextBox x:Name="tbItemCode"  Grid.Column="1" Grid.Row="1"  Margin="22" ></TextBox>
+        <TextBox x:Name="tbItemName"  Grid.Column="0" Grid.Row="1" Margin="22" Text="{Binding FilterName, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center" >Select by code:</Label>
+        <TextBox x:Name="tbItemCode"  Grid.Column="1" Grid.Row="1"  Margin="22" Text="{Binding FilterItemCode, UpdateSourceTrigger=PropertyChanged}"  ></TextBox>
         <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by range of price ($):</Label>
         
         <Button x:Name="bResetFiltersRL" Grid.Column="3" Grid.Row="1" Margin="20">ResetFilters</Button>
-        <DataGrid x:Name="ResellersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="20" AutoGenerateColumns="False">
+        <DataGrid x:Name="ResellersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="20" AutoGenerateColumns="False" ItemsSource="{Binding ListItems}" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header=" Item Code " />
-                <DataGridTextColumn Header=" Item Name " />
-                <DataGridTextColumn Header=" Price " />
-                <DataGridTextColumn Header=" Lead Time " />
-                <DataGridTextColumn Header=" Weight " />
-                <DataGridTextColumn Header=" Volume " />
+                <DataGridTextColumn Header=" Item Code " Binding="{Binding Code}"/>
+                <DataGridTextColumn Header=" Item Name " Binding="{Binding LeadTime}"/>
+                <DataGridTextColumn Header=" Price " Binding="{Binding Price}"/>
+                <DataGridTextColumn Header=" Lead Time " Binding="{Binding Name}"/>
+                <DataGridTextColumn Header=" Weight " Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header=" Volume " Binding="{Binding Volume}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Left" Width="80" >&lt;&lt;</Button>

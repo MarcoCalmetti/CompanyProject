@@ -35,14 +35,14 @@
         <DataGrid x:Name="ResellersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="20" AutoGenerateColumns="False"
                   ItemsSource="{Binding ListResellers}" SelectedItem="{Binding SelectedReseller}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header=" ResellerID " />
-                <DataGridTextColumn Header=" BusinessName " />
-                <DataGridTextColumn Header=" VAT " />
-                <DataGridTextColumn Header=" Address" />
-                <DataGridTextColumn Header=" City " />
-                <DataGridTextColumn Header=" PostalCode " />
-                <DataGridTextColumn Header=" Mail " />
-                <DataGridTextColumn Header=" Telephone " />
+                <DataGridTextColumn Header=" ResellerID " Binding="{Binding ResellerID}"/>
+                <DataGridTextColumn Header=" BuisnessName " Binding="{Binding BuisnessName}" />
+                <DataGridTextColumn Header=" VAT " Binding="{Binding VAT}"/>
+                <DataGridTextColumn Header=" Address" Binding="{Binding Address}"/>
+                <DataGridTextColumn Header=" City " Binding="{Binding City}"/>
+                <DataGridTextColumn Header=" PostalCode " Binding="{Binding PostalCode}"/>
+                <DataGridTextColumn Header=" Mail " Binding="{Binding Mail}"/>
+                <DataGridTextColumn Header=" Telephone " Binding="{Binding TelephoneNumber}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Left" Width="80" >&lt;&lt;</Button>

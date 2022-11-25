@@ -29,13 +29,13 @@
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Width="46">Orders</Label>
         <Button x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="2.8,20,19,20" >Add New Order</Button>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1,1,1.6,0" HorizontalAlignment="Center" Height="26" Width="131">Select by reseller name:</Label>
-        <TextBox x:Name="tbResellerName"  Grid.Column="0" Grid.Row="1" Margin="22,22,21.6,21.6"></TextBox>
+        <TextBox x:Name="tbResellerName" Text= "{Binding ResellerNameFilter}"  Grid.Column="0" Grid.Row="1" Margin="22,22,21.6,21.6"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="7.4,1,7.2,0" HorizontalAlignment="Center" Height="26" Width="119">Select by order date:</Label>
-        <DatePicker x:Name="dpOrderDate" Grid.Row="1" Grid.Column="1" Margin="22.4,22,22.2,21.6"></DatePicker>
+        <DatePicker x:Name="dpOrderDate" SelectedDate= "{Binding FiltroData}" Grid.Row="1" Grid.Column="1" Margin="22.4,22,22.2,21.6"></DatePicker>
         <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="3.8,1,4,0" HorizontalAlignment="Center" Height="26" Width="125">Select by order status:</Label>
-        <ComboBox x:Name="cbOrderStatus"  Grid.Column="2" Grid.Row="1"  Margin="21.8,22,22,21.6"></ComboBox>
+        <ComboBox x:Name="cbOrderStatus" ItemsSource="{Binding ListStatus}" SelectedItem="{Binding SelectedStatus}" Grid.Column="2" Grid.Row="1"  Margin="21.8,22,22,21.6"></ComboBox>
         <Label Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" Margin="9,1,8.6,0" HorizontalAlignment="Center" Height="26" Width="116">Select by reseller id:</Label>
-        <ComboBox x:Name="cbResellerId"  Grid.Column="3" Grid.Row="1"  Margin="22,22,22.6,21.6"></ComboBox>
+        <ComboBox x:Name="cbResellerId" ItemsSource="{Binding ResellerIDList}" SelectedItem="{ Binding SelectedID}"  Grid.Column="3" Grid.Row="1"  Margin="22,22,22.6,21.6"></ComboBox>
         <Label Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" Margin="1.4,1,0.2,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="132">Select range of total ($):</Label>
         
         <!--<controls:RangeSelector x:Name="rsTotalPrice" Grid.Column="4" Grid.Row="1"  Minimum="0"    Maximum="1000000"   StepFrequency="5"></controls:RangeSelector>-->
@@ -43,15 +43,15 @@
         <DataGrid x:Name="OrdersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Margin="20,20.4,20,19.6" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header=" Reseller Name " />
-                <DataGridTextColumn Header=" Order Date" />
-                <DataGridTextColumn Header=" Start Prod. " />
-                <DataGridTextColumn Header=" End Prod. " />
-                <DataGridTextColumn Header=" Order Status " />
-                <DataGridTextColumn Header=" Order Id (by resellers) " />
-                <DataGridTextColumn Header=" Order Id " />
+                <DataGridTextColumn Header=" Order Date" Binding= "{Binding OrderDate}"/>
+                <DataGridTextColumn Header=" Start Prod. " Binding= "{Binding ProductionStartDate}"/>
+                <DataGridTextColumn Header=" End Prod. " Binding= "{Binding ProductionEndDate}"/>
+                <DataGridTextColumn Header=" Order Status " Binding= "{Binding OrderStatus}"/>
+                <DataGridTextColumn Header=" Order Id (by resellers) " Binding= "{Binding ResellerID}"/>
+                <DataGridTextColumn Header=" Order Id " Binding= "{Binding OrderHeaderId}"/>
                 <DataGridTextColumn Header=" Total Price " />
                 <DataGridTextColumn Header=" Lead Time " />
-                <DataGridTextColumn Header=" Notes " />
+                <DataGridTextColumn Header=" Notes " Binding= "{Binding Note}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,5.4,5.2,0" HorizontalAlignment="Right" Width="80" Height="19" >&lt;&lt;</Button>
