@@ -20,7 +20,6 @@
             <RowDefinition Height="0.3*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Hidden">Edit Order</Label>
@@ -33,15 +32,11 @@
             <DataGridTextColumn Header=" Height " IsReadOnly="True" />
             <DataGridTextColumn IsReadOnly="True" Header=" Weight " />
             <DataGridTextColumn IsReadOnly="True" Header=" Volume " />
-            <DataGridTextColumn IsReadOnly="True" Header=" Price " />
+            <DataGridTextColumn IsReadOnly="True" Header=" Unit Price " />
             <DataGridTextColumn IsReadOnly="True" Header=" Lead Time " />
             <DataGridTextColumn IsReadOnly="False" Header=" Qta " />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="3" Grid.Column="1" Margin="20" Width="60" HorizontalAlignment="Left">&lt;&lt;</Button>
-        <Button Grid.Row="3" Grid.Column="1" Margin="20" Width="60" HorizontalAlignment="Right">&lt;</Button>
-        <Button Grid.Row="3" Grid.Column="2" Margin="20" Width="60" HorizontalAlignment="Left">&gt;</Button>
-        <Button Grid.Row="3" Grid.Column="2" Margin="20" Width="60" HorizontalAlignment="Right">&gt;&gt;</Button>
-        <Label  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Center">Pagina 1 di X</Label>
+        
     </Grid>
 </Page>
