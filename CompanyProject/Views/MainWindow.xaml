@@ -27,6 +27,6 @@
             </Image.Source>
         </Image>-->
 
-        <Frame x:Name="NavigationFrame" Grid.Row="0" Grid.Column="0" Source="./LoginView.xaml" NavigationUIVisibility="Hidden" ></Frame>
+        <Frame x:Name="NavigationFrame" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Source="./ResellersListView.xaml" NavigationUIVisibility="Hidden" ></Frame>
     </Grid>
 </Window>
