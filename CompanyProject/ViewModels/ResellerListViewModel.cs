@@ -92,7 +92,7 @@ namespace CompanyProject.ViewModels
         #region Methods
         public async Task LoadData()
         {
-            await (ListResellers = CompanyController.GetAllResellers(BuisnessName, VAT, SelectedCity, Page, PageSize));
+            //await (ListResellers = CompanyController.GetAllResellers(BuisnessName, VAT, SelectedCity, Page, PageSize));
             
         }
 
