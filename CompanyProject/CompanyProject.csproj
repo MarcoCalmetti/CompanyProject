@@ -72,38 +72,6 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ResellersController.cs" />
-    <Compile Include="Models\CompanyDatabase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CompanyDatabase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CompanyDatabase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CompanyDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CompanyDatabase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CompanyDatabase.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Item.cs">
-      <DependentUpon>CompanyDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ItemExpansion.cs" />
-    <Compile Include="Models\OrderHeader.cs">
-      <DependentUpon>CompanyDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OrderHeaderExpansion.cs" />
-    <Compile Include="Models\OrderRow.cs">
-      <DependentUpon>CompanyDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\OrderState.cs">
-      <DependentUpon>CompanyDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Reseller.cs">
-      <DependentUpon>CompanyDatabase.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ItemListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

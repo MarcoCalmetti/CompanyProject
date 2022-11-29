@@ -74,6 +74,20 @@ namespace CompanyProject.ViewModels
             get { return selected_resellername; }
             set { selected_resellername = value; NotifyPropertyChanged("SelectedResellerName"); }
         }
+        private List<int> res_id_list;
+
+        public List<int> ResellersIDList
+        {
+            get { return res_id_list; }
+            set { res_id_list = value; NotifyPropertyChanged("ResellersIDList"); }
+        }
+        private int selectedid;
+
+        public int SelectedID
+        {
+            get { return selectedid; }
+            set { selectedid = value; NotifyPropertyChanged("SelectedID"); }
+        }
 
         #endregion
 
