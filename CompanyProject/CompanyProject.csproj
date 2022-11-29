@@ -72,6 +72,8 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ResellersController.cs" />
+    <Compile Include="ViewModels\AddEditOrderViewModel.cs" />
+    <Compile Include="ViewModels\AddEditResellerViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ItemListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
