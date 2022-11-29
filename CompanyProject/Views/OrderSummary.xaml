@@ -31,7 +31,8 @@
                 <DataGridTextColumn IsReadOnly="True" Header=" Volume " />
                 <DataGridTextColumn IsReadOnly="True" Header=" Unit Price " />
                 <DataGridTextColumn IsReadOnly="True" Header=" Lead Time " />
-                <DataGridTextColumn IsReadOnly="False" Header=" Qta " />
+                <DataGridTextColumn IsReadOnly="False" Header=" Quantity " />
+                <DataGridTextColumn IsReadOnly="False" Header=" Notes " />
             </DataGrid.Columns>
         </DataGrid>
 

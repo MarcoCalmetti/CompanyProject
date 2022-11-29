@@ -22,8 +22,8 @@
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Hidden">Edit Order</Label>
-        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Visible">New Order</Label>
+        <Label x:Name="lEditOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Hidden">Edit Order</Label>
+        <Label x:Name="lNewOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Visible">New Order</Label>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Id: X</Label>
         <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="10">
             <DataGrid.Columns>
@@ -34,7 +34,8 @@
             <DataGridTextColumn IsReadOnly="True" Header=" Volume " />
             <DataGridTextColumn IsReadOnly="True" Header=" Unit Price " />
             <DataGridTextColumn IsReadOnly="True" Header=" Lead Time " />
-            <DataGridTextColumn IsReadOnly="False" Header=" Qta " />
+            <DataGridTextColumn IsReadOnly="False" Header=" Quantity " />
+                <DataGridTextColumn IsReadOnly="False" Header=" Notes " />
             </DataGrid.Columns>
         </DataGrid>
         
