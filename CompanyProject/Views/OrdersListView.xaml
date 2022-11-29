@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Width="46">Orders</Label>
-        <Button x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="2.8,20,19,20" >Add New Order</Button>
+        <Button x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="40" >Add New Order</Button>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1,1,1.6,0" HorizontalAlignment="Center" Height="26" Width="131">Select by reseller name:</Label>
         <TextBox x:Name="tbResellerName" Text= "{Binding ResellerNameFilter}"  Grid.Column="0" Grid.Row="1" Margin="22,22,21.6,21.6"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="7.4,1,7.2,0" HorizontalAlignment="Center" Height="26" Width="119">Select by order date:</Label>
@@ -36,7 +36,7 @@
         <ComboBox x:Name="cbOrderStatus" ItemsSource="{Binding ListStatus}" SelectedItem="{Binding SelectedStatus}" Grid.Column="2" Grid.Row="1"  Margin="21.8,22,22,21.6"></ComboBox>
         <Label Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" Margin="9,1,8.6,0" HorizontalAlignment="Center" Height="26" Width="116">Select by reseller id:</Label>
         <ComboBox x:Name="cbResellerId" ItemsSource="{Binding ResellerIDList}" SelectedItem="{ Binding SelectedID}"  Grid.Column="3" Grid.Row="1"  Margin="22,22,22.6,21.6"></ComboBox>
-        <Label Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" Margin="1.4,1,0.2,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="132">Select range of total ($):</Label>
+        <Label Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" Margin="1.4,1,0.2,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="132">Select by range ($):</Label>
         
         <!--<controls:RangeSelector x:Name="rsTotalPrice" Grid.Column="4" Grid.Row="1"  Minimum="0"    Maximum="1000000"   StepFrequency="5"></controls:RangeSelector>-->
         <Button x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6">ResetFilters</Button>
@@ -54,10 +54,10 @@
                 <DataGridTextColumn Header=" Notes " Binding= "{Binding Note}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,5.4,5.2,0" HorizontalAlignment="Right" Width="80" Height="19" >&lt;&lt;</Button>
-        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="26.8,5.4,26,0" HorizontalAlignment="Center" Width="80" Height="19">&lt;</Button>
-        <Button Grid.Column="3" Grid.Row="3" VerticalAlignment="Top" Margin="27,5.4,26.6,0"   HorizontalAlignment="Center" Width="80" Height="19" >&gt;</Button>
-        <Button Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" Margin="4.4,5.4,0,0"  HorizontalAlignment="Left" Width="80" Height="19" Grid.ColumnSpan="2" >&gt;&gt;</Button>
+        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Right" Width="80" Height="19" >&lt;&lt;</Button>
+        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="42.8,5.4,10,0" HorizontalAlignment="Center" Width="80" Height="19">&lt;</Button>
+        <Button Grid.Column="3" Grid.Row="3" VerticalAlignment="Top" Margin="10,5.4,43.6,0"   HorizontalAlignment="Center" Width="80" Height="19" >&gt;</Button>
+        <Button Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0"  HorizontalAlignment="Left" Width="80" Height="19" Grid.ColumnSpan="2" >&gt;&gt;</Button>
         <Label Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="4.8,5,5.6,0" Height="26">Righe per pagina</Label>
 
     </Grid>
