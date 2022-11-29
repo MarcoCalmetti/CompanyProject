@@ -107,6 +107,8 @@
     <Compile Include="Models\Reseller.cs">
       <DependentUpon>CompanyDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddEditOrderViewModel.cs" />
+    <Compile Include="ViewModels\AddEditResellerViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ItemListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
