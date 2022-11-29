@@ -74,6 +74,39 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ResellersController.cs" />
+    <Compile Include="Models\CompanyDatabase.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDatabase.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyDatabase.cs" />
+    <Compile Include="Models\CompanyDatabase.Designer.cs">
+      <DependentUpon>CompanyDatabase.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\CompanyDatabase1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Item.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItemExpansion.cs" />
+    <Compile Include="Models\OrderHeader.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderHeaderExpansion.cs" />
+    <Compile Include="Models\OrderRow.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderState.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reseller.cs">
+      <DependentUpon>CompanyDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ItemListViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -185,7 +218,7 @@
     <Content Include="Models\CompanyDatabase.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CompanyDatabase.edmx</DependentUpon>
-      <LastGenOutput>CompanyDatabase.cs</LastGenOutput>
+      <LastGenOutput>CompanyDatabase1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
