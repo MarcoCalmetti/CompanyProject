@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Width="46">Orders</Label>
-        <Button x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="40" >Add New Order</Button>
+        <Button x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="40" Click="buttNewOrder_Click" >Add New Order</Button>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1,1,1.6,0" HorizontalAlignment="Center" Height="26" Width="131">Select by reseller name:</Label>
         <TextBox x:Name="tbResellerName" Text= "{Binding ResellerNameFilter}"  Grid.Column="0" Grid.Row="1" Margin="22,22,21.6,21.6"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="7.4,1,7.2,0" HorizontalAlignment="Center" Height="26" Width="119">Select by order date:</Label>
@@ -39,8 +39,8 @@
         <Label Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" Margin="1.4,1,0.2,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="132">Select by range ($):</Label>
         
         <!--<controls:RangeSelector x:Name="rsTotalPrice" Grid.Column="4" Grid.Row="1"  Minimum="0"    Maximum="1000000"   StepFrequency="5"></controls:RangeSelector>-->
-        <Button x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6">ResetFilters</Button>
-        <DataGrid x:Name="OrdersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Margin="20,20.4,20,19.6" AutoGenerateColumns="False">
+        <Button x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6" Click="bResetFiltersOL_Click">ResetFilters</Button>
+        <DataGrid x:Name="OrdersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Margin="20,20.4,20,19.6" AutoGenerateColumns="False" MouseRightButtonDown="OrdersList_MouseRightButtonDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header=" Reseller Name " />
                 <DataGridTextColumn Header=" Order Date" Binding= "{Binding OrderDate}"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanyProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,28 @@ namespace CompanyProject.Views
     /// </summary>
     public partial class OrdersListView : Page
     {
+        OrderListViewModel vm;
         public OrdersListView()
         {
             InitializeComponent();
+            vm = new OrderListViewModel();
+            DataContext = vm;
+        }
+
+        private void OrdersList_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //EditOrderRightClick();
+        }
+
+        private void buttNewOrder_Click(object sender, RoutedEventArgs e)
+        {
+            //AddOrderRightClick();
+        }
+
+        private void bResetFiltersOL_Click(object sender, RoutedEventArgs e)
+        {
+            vm.AzzeraFiltri();
+            //mettere azzerafiltri public nel vm
         }
     }
 }

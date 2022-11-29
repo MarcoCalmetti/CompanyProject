@@ -107,7 +107,7 @@ namespace CompanyProject.ViewModels
         {
            
         }
-        private void AzzeraFiltri()
+        public void AzzeraFiltri()
         {
 
             ResellerNameFilter = "";
