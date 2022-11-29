@@ -28,6 +28,11 @@ namespace CompanyProject.Controllers
                         Oh.TotalPrice = await context.OrderRows
                             .Where(s => s.OrderHeaderId == Oh.OrderHeaderId)
                             .SumAsync(s => s.Quantity * s.UnitPrice);
+
+                        Oh.Leadtime = await context.OrderRows
+                            .Where(s => s.OrderHeaderId == Oh.OrderHeaderId)
+                            .Include(s=>s.Item)
+                            .MaxAsync(s => s.Item.LeadTime); //molto probabilmente non funziona
                     }
 
                     return Lista;
