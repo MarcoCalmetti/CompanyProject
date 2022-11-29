@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CompanyProject.ViewModels;
 
 namespace CompanyProject.Views
 {
     /// <summary>
     /// Logica di interazione per OrderSummary.xaml
     /// </summary>
-    public partial class OrderSummary : Page
+    public partial class OrderSummary : Window
     {
         public OrderSummary()
         {
