@@ -13,10 +13,9 @@ namespace CompanyProject.ViewModels
             set { add_reseller = value; NotifyPropertyChanged("AddReseller"); }
         }
 
-        private string businessname
-            ;
+        private string businessname;
 
-        public string Buisnessname
+        public string Businessname
         {
             get { return businessname; }
             set { businessname = value; NotifyPropertyChanged("BuisnessName"); }

@@ -27,6 +27,15 @@ namespace CompanyProject.ViewModels
             get { return selecteditem; }
             set { selecteditem = value; NotifyPropertyChanged("SelectedItem"); }
         }
+
+        private string note;
+
+        public string Notes
+        {
+            get { return note; }
+            set { note = value; NotifyPropertyChanged("Notes"); }
+        }
+
         #endregion
 
         #region Constructor
