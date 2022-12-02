@@ -12,13 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CompanyProject.ViewModels;
 
 namespace CompanyProject.Views
 {
     /// <summary>
     /// Logica di interazione per AddEditOrder.xaml
     /// </summary>
-    public partial class AddEditOrder : Page
+    public partial class AddEditOrder : Window
     {
         public AddEditOrder()
         {
