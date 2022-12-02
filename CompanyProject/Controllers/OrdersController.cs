@@ -31,7 +31,7 @@ namespace CompanyProject.Controllers
 
                         Oh.Leadtime = await context.OrderRows
                             .Where(s => s.OrderHeaderId == Oh.OrderHeaderId)
-                            .Include(s=>s.Item)
+                            .Include("Item")
                             .MaxAsync(s => s.Item.LeadTime); //molto probabilmente non funziona
                     }
 
@@ -161,9 +161,8 @@ namespace CompanyProject.Controllers
                     List < Item > Items = await context.Items.Select(s => s).ToListAsync();
 
                     foreach (Item i in Items)
-                        i.Quantity = (await context.OrderRows.Select(s => s).Where(s => s.ItemId == i.Id && s.OrderHeaderId == Or.OrderHeaderId).FirstOrDefaultAsync()).Quantity;
-     
-
+                        i.Quantity = await context.OrderRows.Where(s => s.ItemId == i.Id && s.OrderHeaderId == Or.OrderHeaderId).SumAsync(s=>s.Quantity);
+                        
                     return Items;
                 }
             }
