@@ -25,8 +25,12 @@
 
         <Label x:Name="lEditOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Hidden">Edit Order</Label>
         <Label x:Name="lNewOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Visible">New Order</Label>
-        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" Content="Id : "></Label>
-        <Label Content="{Binding Id}"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="39,17.4,150.4,10.4" ></Label>
+        
+        <StackPanel  Grid.Row="1" Grid.Column="0">
+            <Label Content="Id : "></Label>
+            <Label Content="{Binding Id}" ></Label>
+        </StackPanel>
+        
         <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Code}" Header=" Item Code " IsReadOnly="True" />

@@ -24,7 +24,7 @@
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,5,0,4.6" Width="94">Order Summary</Label>
         <Label Content="Id: X" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,4.6" Height="26" Width="34" />
 
-        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10.4,20,10.2">
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="10,10.4,20,10.2">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ItemCode}" Header=" Item Code " IsReadOnly="True" />
                 <DataGridTextColumn Binding="{Binding Name}" Header=" Name" IsReadOnly="True" />
