@@ -22,11 +22,8 @@ namespace CompanyProject.Views
     public partial class ResellersListView : Page
     {
         ResellerListViewModel vm;
-
-        
         public ResellersListView()
         {
-
             InitializeComponent();
             vm = new ResellerListViewModel();
             DataContext = vm;
@@ -39,12 +36,37 @@ namespace CompanyProject.Views
 
         private void buttNewReseller_Click(object sender, RoutedEventArgs e)
         {
-            //AddResellerRightClick();
+            vm.AddReseller();
         }
 
         private void bResetFiltersRL_Click(object sender, RoutedEventArgs e)
         {
             vm.ResetFilter();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            vm.EditReseller();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            vm.FirstPage();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            vm.LastPage();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            vm.NextPage();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            vm.PreviousPage();
         }
     }
 }

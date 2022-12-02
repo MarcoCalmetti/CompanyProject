@@ -26,7 +26,7 @@
         <Label  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left">Resellers</Label>
         <Button x:Name="buttNewReseller" Grid.Column="3" Grid.Row="0" Margin="40" Click="buttNewReseller_Click" >Add New Reseller</Button>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by business name:</Label>
-        <TextBox x:Name="tbBusinessName"  Grid.Column="0" Grid.Row="1" Margin="22" Text="{Binding BuisnessName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <TextBox x:Name="tbBusinessName"  Grid.Column="0" Grid.Row="1" Margin="22" Text="{Binding BusinessName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by VAT:</Label>
         <TextBox x:Name="tbVAT"  Grid.Column="1" Grid.Row="1"  Margin="22" Text="{Binding VAT, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="1" HorizontalAlignment="Center">Select by city:</Label>
@@ -44,12 +44,18 @@
                 <DataGridTextColumn Header=" Mail " Binding="{Binding Mail}"/>
                 <DataGridTextColumn Header=" Telephone " Binding="{Binding TelephoneNumber}"/>
             </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Edit" Click="MenuItem_Click"/>
+                    <MenuItem Header="Delete"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
-        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Left" Width="80" >&lt;&lt;</Button>
-        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0, 5, 20, 0" HorizontalAlignment="Right" Width="80">&lt;</Button>
-        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="20, 5, 0, 0"   HorizontalAlignment="Left" Width="80" >&gt;</Button>
-        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="5"  HorizontalAlignment="Right" Width="80" >&gt;&gt;</Button>
-        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="5">Righe per pagina</Label>
+        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Left" Width="80" Click="Button_Click" IsEnabled="{Binding FirstPageButtonIsEnabled }">&lt;&lt;</Button>
+        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0, 5, 20, 0" HorizontalAlignment="Right" Width="80" Click="Button_Click_3" IsEnabled="{Binding PreviousPageButtonIsEnabled}">&lt;</Button>
+        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="20, 5, 0, 0"   HorizontalAlignment="Left" Width="80" Click="Button_Click_2" IsEnabled="{Binding NextPageButtonIsEnabled}">&gt;</Button>
+        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="5"  HorizontalAlignment="Right" Width="80" Click="Button_Click_1" IsEnabled="{Binding LastPageButtonIsEnabled}">&gt;&gt;</Button>
+        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="5" Content="{Binding StringLabelPagina}"></Label>
 
 
     </Grid>

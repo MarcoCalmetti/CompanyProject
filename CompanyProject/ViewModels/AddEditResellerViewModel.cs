@@ -1,9 +1,14 @@
-﻿using CompanyProject.Models;
+﻿using CompanyProject.Controllers;
+using CompanyProject.Models;
+using System;
+
 namespace CompanyProject.ViewModels
 {
     class AddEditResellerViewModel : BaseViewModel
     {
         #region Properties
+
+        private bool EditMode;
 
         private Reseller add_reseller;
 
@@ -13,89 +18,44 @@ namespace CompanyProject.ViewModels
             set { add_reseller = value; NotifyPropertyChanged("AddReseller"); }
         }
 
-        private string businessname;
-
-        public string Businessname
-        {
-            get { return businessname; }
-            set { businessname = value; NotifyPropertyChanged("BuisnessName"); }
-        }
-
-        private string address;
-
-        public string Address
-        {
-            get { return address; }
-            set { address = value; NotifyPropertyChanged("Address"); }
-        }
-
-        private string city;
-
-        public string City
-        {
-            get { return city; }
-            set { city = value;NotifyPropertyChanged("City"); }
-        }
-        private string postalcode;
-
-        public string PostalCode
-        {
-            get { return postalcode; }
-            set { postalcode = value; NotifyPropertyChanged("PostalCode"); }
-        }
-        private string vat;
-
-        public string VAT
-        {
-            get { return vat; }
-            set { vat = value; NotifyPropertyChanged("VAT"); }
-        }
-
-        private string mail;
-
-        public string Mail
-        {
-            get { return mail; }
-            set { mail = value; NotifyPropertyChanged("Mail"); }
-        }
-
-        private int telephonenumber;
-
-        public int TelephoneNumber
-        {
-            get { return telephonenumber; }
-            set { telephonenumber = value; NotifyPropertyChanged("TelephoneNumber"); }
-        }
-
-        
-
-
         #endregion
 
         #region Costructor
 
         public AddEditResellerViewModel()
         {
-
+            EditMode = false;
+            AddReseller = new Reseller();
         }
 
+        public AddEditResellerViewModel(Reseller r)
+        {
+            EditMode = true;
+            AddReseller = new Reseller();
+            AddReseller.ResellerID = r.ResellerID;
+            AddReseller.Address = r.Address;
+            AddReseller.City = r.City;
+            AddReseller.VAT = r.VAT;
+            AddReseller.BusinessName = r.BusinessName;
+            AddReseller.Mail = r.Mail;
+            AddReseller.PostalCode = r.PostalCode;
+            AddReseller.TelephoneNumber = r.TelephoneNumber;
+
+        }
         #endregion
 
         #region Methods
 
-        public void AddUser()
+        internal void Confirm()
         {
-            
-
-
+            if (EditMode)
+                ResellersController.Update(AddReseller);
+            else
+                ResellersController.Add(AddReseller);
         }
 
-        public void EditUser()
-        { 
-        
-        
-        }
-        
+
+
         #endregion
 
     }

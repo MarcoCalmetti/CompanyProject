@@ -11,6 +11,51 @@ namespace CompanyProject.Controllers
 {
     static class ResellersController
     {
+        public async static Task<int> GetResellerNumber(string BusinessName, string VAT, string City)
+        {
+            try
+            {
+                using (CompanyContext context = new CompanyContext())
+                {
+                    return await context.Resellers
+                        .Where(s => !String.IsNullOrEmpty(BusinessName) ? s.BusinessName.Contains(BusinessName) : true)
+                        .Where(s => !String.IsNullOrEmpty(VAT) ? s.VAT.Contains(VAT) : true)
+                        .Where(s => !String.IsNullOrEmpty(City) ? s.City == City : true)
+                        .CountAsync();
+                }
+            }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public async static Task<List<string>> GetAllCity()
+        {
+            try
+            {
+                using (CompanyContext context = new CompanyContext())
+                {
+                    var x = await context.Resellers
+                        .Select(s => s.City)
+                        .Distinct()
+                        .ToListAsync();
+
+                    return x;
+                }
+            }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         public async static Task<List<Reseller>> GetAll(string BusinessName, string VAT, string City, int page, int pageSize)
         {
             try
@@ -18,15 +63,13 @@ namespace CompanyProject.Controllers
                 using (CompanyContext context = new CompanyContext())
                 {
                     var x = await context.Resellers
-                        .Select(s => s)
-                        .Where(s => BusinessName != null ? s.BusinessName.Contains(BusinessName) : true)
-                        .Where(s => VAT != null ? s.VAT.Contains(VAT) : true)
-                        .Where(s=> City != null ? s.City == City : true)
+                        .Where(s => !String.IsNullOrEmpty(BusinessName) ? s.BusinessName.Contains(BusinessName) : true)
+                        .Where(s => !String.IsNullOrEmpty(VAT) ? s.VAT.Contains(VAT) : true)
+                        .Where(s => !String.IsNullOrEmpty(City) ? s.City == City : true)
                         .OrderBy(s=>s.ResellerID)
                         .Skip((page - 1) * pageSize)
                         .Take(pageSize)
                         .ToListAsync();
-                    MessageBox.Show(x.ToString());
 
                     return x;
                 }
@@ -41,24 +84,14 @@ namespace CompanyProject.Controllers
             }
         }
 
-        public async static Task Add(string BusinessName, string VAT, string Address, string City, string PostalCode, string Mail, string TelephoneNumber)
+        public async static Task Add(Reseller r)
         {
             try
             {
                 using (CompanyContext context = new CompanyContext())
                 {
-                    await checkReseller(BusinessName, VAT, Mail, TelephoneNumber);
-                    context.Resellers.Add(
-                        new Reseller
-                        {
-                            BusinessName = BusinessName,
-                            VAT = VAT,
-                            Address = Address,
-                            City = City,
-                            PostalCode = PostalCode,
-                            Mail = Mail,
-                            TelephoneNumber = TelephoneNumber
-                        });
+                    context.Resellers.Add(r);
+                    await context.SaveChangesAsync();
                 }
             }catch(ArgumentException e)
             {

@@ -114,6 +114,9 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\OrderListViewModel.cs" />
     <Compile Include="ViewModels\ResellerListViewModel.cs" />
+    <Compile Include="Views\AddEditResellerView.xaml.cs">
+      <DependentUpon>AddEditResellerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ItemsListView.xaml.cs">
       <DependentUpon>ItemsListView.xaml</DependentUpon>
     </Compile>
@@ -133,7 +136,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddEditReseller.xaml">
+    <Page Include="Views\AddEditResellerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
