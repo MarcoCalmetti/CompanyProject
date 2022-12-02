@@ -26,21 +26,22 @@
 
         <Label x:Name="lEditReseller" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Hidden">Edit Reseller</Label>
         <Label x:Name="lNewReseller" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Visible">New Reseller</Label>
-        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" >Id: X</Label>
+        <Label Content="Id : "  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" ></Label>
+        <Label Content="{Binding Id}"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="42,17.4,146.4,10.4" ></Label>
         <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Business Name:</Label>
-        <TextBox Margin="20" Grid.Row="2" Grid.Column="0" Height="40"></TextBox>
+        <TextBox Text= "{Binding BusinessName}" Margin="20" Grid.Row="2" Grid.Column="0" Height="40"></TextBox>
         <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Address:</Label>
-        <TextBox Margin="20" Grid.Row="2" Grid.Column="1" Height="40"></TextBox>
+        <TextBox Text= "{Binding Address}" Margin="20" Grid.Row="2" Grid.Column="1" Height="40"></TextBox>
         <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >City:</Label>
-        <TextBox Margin="20" Grid.Row="2" Grid.Column="2" Height="40"></TextBox>
+        <TextBox Text= "{Binding City}" Margin="20" Grid.Row="2" Grid.Column="2" Height="40"></TextBox>
         <Label Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Postal Code:</Label>
-        <TextBox Margin="20" Grid.Row="2" Grid.Column="3" Height="40"></TextBox>
+        <TextBox Text= "{Binding PostalCode}" Margin="20" Grid.Row="2" Grid.Column="3" Height="40"></TextBox>
         <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >VAT:</Label>
-        <TextBox Margin="20" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="40"></TextBox>
+        <TextBox Text= "{Binding VAT}" Margin="20" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="40"></TextBox>
         <Label Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Mail:</Label>
-        <TextBox Margin="20" Grid.Row="3" Grid.Column="2" Height="40"></TextBox>
+        <TextBox Text= "{Binding Mail}" Margin="20" Grid.Row="3" Grid.Column="2" Height="40"></TextBox>
         <Label Grid.Row="3" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Telephone Number:</Label>
-        <TextBox Margin="20" Grid.Row="3" Grid.Column="3" Height="40"></TextBox>
+        <TextBox Text= "{Binding TelephoneNumber}" Margin="20" Grid.Row="3" Grid.Column="3" Height="40"></TextBox>
 
         <Label Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Center">Do you want to confirm the reseller?</Label>
         <Button Grid.Column="2" Grid.Row="5" VerticalAlignment="Top" Margin="10" HorizontalAlignment="Right" Width="80">Yes</Button>

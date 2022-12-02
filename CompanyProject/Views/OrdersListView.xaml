@@ -41,7 +41,7 @@
         <!--<controls:RangeSelector x:Name="rsTotalPrice" Grid.Column="4" Grid.Row="1"  Minimum="0"    Maximum="1000000"   StepFrequency="5"></controls:RangeSelector>-->
         <Button x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6" Click="bResetFiltersOL_Click">ResetFilters</Button>
         <DataGrid x:Name="OrdersList" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Margin="20,20.4,20,19.6" AutoGenerateColumns="False" MouseRightButtonDown="OrdersList_MouseRightButtonDown">
-            <DataGrid.Columns>
+            <DataGrid.Columns >
                 <DataGridTextColumn Header=" Reseller Name " />
                 <DataGridTextColumn Header=" Order Date" Binding= "{Binding OrderDate}"/>
                 <DataGridTextColumn Header=" Start Prod. " Binding= "{Binding ProductionStartDate}"/>
@@ -49,10 +49,19 @@
                 <DataGridTextColumn Header=" Order Status " Binding= "{Binding OrderStatus}"/>
                 <DataGridTextColumn Header=" Order Id (by resellers) " Binding= "{Binding ResellerID}"/>
                 <DataGridTextColumn Header=" Order Id " Binding= "{Binding OrderHeaderId}"/>
-                <DataGridTextColumn Header=" Total Price " />
-                <DataGridTextColumn Header=" Lead Time " />
+                <DataGridTextColumn Header=" Total Price " Binding= "{Binding TotalPrice}"/>
+                <DataGridTextColumn Header=" Lead Time " Binding= "{Binding LeadTime}"/>
                 <DataGridTextColumn Header=" Notes " Binding= "{Binding Note}"/>
-            </DataGrid.Columns>
+            </DataGrid.Columns >
+            <DataGrid.ContextMenu>
+                <ContextMenu> <!--scrivere tutti i click-->
+                    <MenuItem Header="Show"/>
+                    <MenuItem Header="Edit"/>
+                    <MenuItem Header="Delete"/>
+                    <MenuItem Header="Start production"/>
+                    <MenuItem Header="End Production"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
         <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Right" Width="80" Height="19" >&lt;&lt;</Button>
         <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="42.8,5.4,10,0" HorizontalAlignment="Center" Width="80" Height="19">&lt;</Button>

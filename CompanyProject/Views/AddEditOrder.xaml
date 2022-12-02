@@ -25,20 +25,21 @@
 
         <Label x:Name="lEditOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Hidden">Edit Order</Label>
         <Label x:Name="lNewOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Visibility="Visible">New Order</Label>
-        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" >Id: X</Label>
+        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" Content="Id : "></Label>
+        <Label Content="{Binding Id}"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="39,17.4,150.4,10.4" ></Label>
         <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="10">
             <DataGrid.Columns>
-            <DataGridTextColumn Header=" Item Code " IsReadOnly="True" />
-            <DataGridTextColumn Header=" Name" IsReadOnly="True" />
-            <DataGridTextColumn Header=" Height " IsReadOnly="True" />
-            <DataGridTextColumn IsReadOnly="True" Header=" Weight " />
-            <DataGridTextColumn IsReadOnly="True" Header=" Volume " />
-            <DataGridTextColumn IsReadOnly="True" Header=" Unit Price " />
-            <DataGridTextColumn IsReadOnly="True" Header=" Lead Time " />
-            <DataGridTextColumn IsReadOnly="False" Header=" Quantity " />
-                <DataGridTextColumn IsReadOnly="False" Header=" Notes " />
+                <DataGridTextColumn Binding="{Binding Code}" Header=" Item Code " IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Name}" Header=" Name" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Weight}" IsReadOnly="True" Header=" Weight " />
+                <DataGridTextColumn Binding="{Binding Volume}" IsReadOnly="True" Header=" Volume " />
+                <DataGridTextColumn Binding="{Binding Price}" IsReadOnly="True" Header=" Unit Price " />
+                <DataGridTextColumn Binding="{Binding LeadTime}" IsReadOnly="True" Header=" Lead Time " />
+                <DataGridTextColumn Binding="{Binding Quantity}" IsReadOnly="False" Header=" Quantity " />
             </DataGrid.Columns>
         </DataGrid>
+        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Center" Content="Notes:"></Label>
+        <TextBox Text="{Binding Notes}" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5" Height="55" Width="250" HorizontalAlignment="Right"></TextBox>
         <Label Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Center">Do you want to confirm the order?</Label>
         <Button Grid.Column="2" Grid.Row="4" VerticalAlignment="Top" Margin="10" HorizontalAlignment="Right" Width="80">Yes</Button>
         <Button Grid.Column="3" Grid.Row="4"  VerticalAlignment="Top" Margin="10"   HorizontalAlignment="Left" Width="80" >No</Button>

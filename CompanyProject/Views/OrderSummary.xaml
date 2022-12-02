@@ -13,32 +13,42 @@
             <RowDefinition Height="0.3*"/>
             <RowDefinition />
             <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.13*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition/>
+            <ColumnDefinition Width="179*" />
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="201.6"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" >Order Summary</Label>
+        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="5,5,0,4.6" Width="94">Order Summary</Label>
+        <Label Content="Id: X" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,0,4.6" Height="26" Width="34" />
 
-        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10">
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10.4,20,10.2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header=" Item Code " IsReadOnly="True" />
-                <DataGridTextColumn Header=" Name" IsReadOnly="True" />
-                <DataGridTextColumn Header=" Height " IsReadOnly="True" />
-                <DataGridTextColumn IsReadOnly="True" Header=" Weight " />
-                <DataGridTextColumn IsReadOnly="True" Header=" Volume " />
-                <DataGridTextColumn IsReadOnly="True" Header=" Unit Price " />
-                <DataGridTextColumn IsReadOnly="True" Header=" Lead Time " />
-                <DataGridTextColumn IsReadOnly="False" Header=" Quantity " />
-                <DataGridTextColumn IsReadOnly="False" Header=" Notes " />
+                <DataGridTextColumn Binding="{Binding ItemCode}" Header=" Item Code " IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Name}" Header=" Name" IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Height}" Header=" Height " IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Weight}" IsReadOnly="True" Header=" Weight " />
+                <DataGridTextColumn Binding="{Binding Volume}" IsReadOnly="True" Header=" Volume " />
+                <DataGridTextColumn Binding="{Binding Price}" IsReadOnly="True" Header=" Unit Price " />
+                <DataGridTextColumn Binding="{Binding LeadTime}" IsReadOnly="True" Header=" Lead Time " />
+                <DataGridTextColumn Binding="{Binding Quantity}" IsReadOnly="False" Header=" Quantity " />
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Center">Are you sure to confirm this order?</Label>
-        <Button Grid.Column="0" Grid.Row="3" VerticalAlignment="Top" Margin="10" HorizontalAlignment="Right" Width="80">Yes</Button>
-        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="10"   HorizontalAlignment="Left" Width="80" >No</Button>
+        <Label Content="Notes:" Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Margin="5"> </Label>
+        
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBox Text="{Binding Notes}" Grid.Row="1" Grid.Column="2"  Margin="10" Height="80" IsEnabled="False" ></TextBox>
+            <Label Content="Total price:" Grid.Row="1" Grid.Column="2"  Margin="5"></Label>
+            <Label Content="{Binding TotalPrice}" Grid.Row="1" Grid.Column="2"  Margin="5" Height="30"></Label> 
+        </StackPanel>
+        
+
+        <Label Grid.Column="2" Grid.Row="2"  VerticalAlignment="Top" Margin="5,4.8,1.6,0" HorizontalAlignment="Center" Height="26" Width="195">Are you sure to confirm this order?</Label>
+        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="0,4.6,10,0" HorizontalAlignment="Right" Width="80" Height="19">Yes</Button>
+        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="10,4.6,0,0"   HorizontalAlignment="Left" Width="80" Height="19" >No</Button>
 
     </Grid>
 </Window>

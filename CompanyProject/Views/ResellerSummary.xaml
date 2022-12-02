@@ -24,14 +24,47 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" >Reseller Summary</Label>
-        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Id: X</Label>
-        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Business Name: X</Label>
-        <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Address: X</Label>
-        <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >City: X</Label>
-        <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Postal Code: X</Label>
-        <Label Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >VAT: X</Label>
-        <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Mail: X</Label>
-        <Label Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Telephone Number: X</Label>
+        
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label Content="Id: " />
+            <Label Content="{Binding Id}"></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Business Name: " />
+            <Label Content="{Binding BusinessName}"></Label>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <Label Content="Address: " />
+            <Label Content="{Binding Address}"></Label>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="City: " />
+            <Label Content="{Binding City}"></Label>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <Label Content="Postal Code: " />
+            <Label Content="{Binding PostalCode}"></Label>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Label Content="VAT: " />
+            <Label Content="{Binding VAT}"></Label>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="4" Grid.Column="0">
+            <Label Content="Mail: "/>
+            <Label Content="{Binding Mail}"></Label>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <Label Content="Telephone Number: "    />
+            <Label Content="{Binding TelephoneNumber}"></Label>
+        </StackPanel>
+        
 
         <Label Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Center"> Are you sure to confirm these changes? </Label>
         <Button Grid.Column="0" Grid.Row="6" VerticalAlignment="Top" Margin="10" HorizontalAlignment="Right" Width="80">Yes</Button>
