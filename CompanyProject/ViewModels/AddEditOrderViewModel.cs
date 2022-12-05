@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CompanyProject.ViewModels;
-using CompanyProject.Models; 
-
+using CompanyProject.Models;
+using CompanyProject.Controllers;
+using CompanyProject.Views;
 
 namespace CompanyProject.ViewModels
 {
@@ -20,13 +21,21 @@ namespace CompanyProject.ViewModels
             set { itemlist = value; NotifyPropertyChanged("ItemList"); }
         }
 
-        private Item selecteditem;
+        private OrderHeaderView selectedOrder;
 
-        public Item SelectedItem
+        public OrderHeaderView SelectedOrder
         {
-            get { return selecteditem; }
-            set { selecteditem = value; NotifyPropertyChanged("SelectedItem"); }
+            get { return selectedOrder; }
+            set { selectedOrder = value; NotifyPropertyChanged("SelectedOrder"); }
         }
+
+        private string _editAddLabel;
+        public string EditAddLabel
+        {
+            get { return _editAddLabel; }
+            set { _editAddLabel = value; NotifyPropertyChanged("EditAddLabel"); }
+        }
+
 
         private string note;
 
@@ -36,20 +45,47 @@ namespace CompanyProject.ViewModels
             set { note = value; NotifyPropertyChanged("Notes"); }
         }
 
+        private bool editmode;
+
         #endregion
 
         #region Constructor
         public AddEditOrderViewModel()
         {
+            editmode = false;
+            _editAddLabel = "Add New Order";
+            InitializeNewOrder();
+        }
 
+        public AddEditOrderViewModel(OrderHeaderView Oh)
+        {
+            editmode = true;
+            _editAddLabel = "Edit Order";
+            SelectedOrder = Oh;
+            InitializeEditOrder(SelectedOrder);
         }
         #endregion
 
         #region Methods
+        public async Task InitializeEditOrder(OrderHeaderView Oh)
+        {
+            Notes = Oh.Note;
+            ItemList = await OrdersController.GetAllOrdersRows(Oh);
+        }
 
+        public async Task InitializeNewOrder()
+        {
+            ItemList = await OrdersController.GetAllOrdersRows();
+        }
 
+        public async Task SaveChanges()
+        {
+            if (!editmode)
+                await OrdersController.AddNewOrder(ItemList, Notes);
+            else
+                await OrdersController.UpdateOrder(ItemList, SelectedOrder, Notes);
+        }
 
-         
         #endregion
     }
 }

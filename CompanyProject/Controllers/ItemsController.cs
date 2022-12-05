@@ -16,15 +16,39 @@ namespace CompanyProject.Controllers
             {
                 using (CompanyContext context = new CompanyContext())
                 {
-                    return await context.Items
-                        .Select(s => s)
-                        .Where(s => Name != null ? s.Name.Contains(Name) : true)
-                        .Where(s => Code != null ? s.Code.Contains(Code) : true)
+                    var x = await context.Items
+                        .Where(s => !String.IsNullOrEmpty(Name) ? s.Name.Contains(Name) : true)
+                        .Where(s => !String.IsNullOrEmpty(Code) ? s.Code.Contains(Code) : true)
                         .OrderBy(s => s.Id)
                         .Skip((page - 1) * pageSize)
                         .Take(pageSize)
                         .ToListAsync();
-                    
+                    return x;
+
+                }
+            }
+            catch (ArgumentException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public async static Task<int> GetItemsNumber(string Name, string Code)
+        {
+            try
+            {
+                using (CompanyContext context = new CompanyContext())
+                {
+                    return await context.Items
+                        .Where(s => !String.IsNullOrEmpty(Name) ? s.Name.Contains(Name) : true)
+                        .Where(s => !String.IsNullOrEmpty(Code) ? s.Code.Contains(Code) : true)
+                        .CountAsync();
+                   
+
                 }
             }
             catch (ArgumentException e)

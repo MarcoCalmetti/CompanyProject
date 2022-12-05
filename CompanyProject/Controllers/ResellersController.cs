@@ -154,6 +154,7 @@ namespace CompanyProject.Controllers
                 {
                     using (CompanyContext context = new CompanyContext())
                     {
+                        context.Resellers.Attach(ResellerToDelete);
                         context.Resellers.Remove(ResellerToDelete);
                         await context.SaveChangesAsync();
                         return true;

@@ -9,7 +9,7 @@ using CompanyProject.Views;
 
 namespace CompanyProject.ViewModels
 {
-    class ResellerListViewModel : BaseViewModel
+    class ResellerListViewModel : PaginationViewModel
     {
 
         #region Properties 
@@ -45,14 +45,14 @@ namespace CompanyProject.ViewModels
         public string VAT // è la partita iva, stringa che vado ad utilizzare nella textbox VAT
         {
             get { return vat; }
-            set { vat = value;NotifyPropertyChanged("VAT"); LoadData(); Page = 1; }
+            set { vat = value; NotifyPropertyChanged("VAT"); LoadData(); Page = 1; }
         }
 
         private List<string> list_city;
 
         public List<string> ListCity // è la lista di città,
         {
-            get { return list_city ; }
+            get { return list_city; }
             set { list_city = value; NotifyPropertyChanged("ListCity"); }
         }
 
@@ -63,21 +63,8 @@ namespace CompanyProject.ViewModels
             get { return city; }
             set { city = value; NotifyPropertyChanged("SelectedCity"); LoadData(); Page = 1; }
         }
-        private int page;
 
-        public int Page
-        {
-            get { return page; }
-            set { page = value; NotifyPropertyChanged("Page"); }
-        }
 
-        private int pagesize;
-
-        public int PageSize
-        {
-            get { return pagesize; }
-            set { pagesize = value; }
-        }
 
         #endregion
 
@@ -92,6 +79,11 @@ namespace CompanyProject.ViewModels
         #endregion
 
         #region Methods
+        internal async Task RemoveReseller()
+        {
+            await ResellersController.Delete(SelectedReseller);
+            Initailize();
+        }
 
         internal void EditReseller()
         {
@@ -111,12 +103,12 @@ namespace CompanyProject.ViewModels
             PageSize = 10;
             Page = 1;
             ListCity = await ResellersController.GetAllCity();
-            await LoadData();
+            LoadData();
         }
 
         public async Task LoadData()
         {
-            ListResellers = await ResellersController.GetAll(BusinessName,VAT, SelectedCity, Page, PageSize);
+            ListResellers = await ResellersController.GetAll(BusinessName, VAT, SelectedCity, Page, PageSize);
             _totalPages = (int)Math.Ceiling(await ResellersController.GetResellerNumber(BusinessName, VAT, SelectedCity) / (double)PageSize);
             checkButton();
             StringLabelPagina = "Page " + page + " of " + _totalPages;
@@ -130,11 +122,8 @@ namespace CompanyProject.ViewModels
             NotifyPropertyChanged("SelectedCity");
             NotifyPropertyChanged("VAT");
             NotifyPropertyChanged("BusinessName");
-            LoadData(); 
+            LoadData();
         }
-
-
-        #endregion
 
         internal void PreviousPage()
         {
@@ -165,81 +154,8 @@ namespace CompanyProject.ViewModels
 
         }
 
-        internal void checkButton()
-        {
-            if (Page == 1)
-            {
-                PreviousPageButtonIsEnabled = false;
-                FirstPageButtonIsEnabled = false;
-            }
-            else
-            {
-                PreviousPageButtonIsEnabled = true;
-                FirstPageButtonIsEnabled = true;
-            }
 
-            if (Page >= TotalPages)
-            {
-                if (TotalPages == 0)
-                {
-                    Page = 0;
-                    PreviousPageButtonIsEnabled = false;
-                    FirstPageButtonIsEnabled = false;
-                }
+        #endregion
 
-                NextPageButtonIsEnabled = false;
-                LastPageButtonIsEnabled = false;
-
-            }
-            else
-            {
-                NextPageButtonIsEnabled = true;
-                LastPageButtonIsEnabled = true;
-            }
-
-        }
-
-        private bool _nextPageButtonIsEnabled;
-        public bool NextPageButtonIsEnabled
-        {
-            get { return _nextPageButtonIsEnabled; }
-            set { _nextPageButtonIsEnabled = value; NotifyPropertyChanged("NextPageButtonIsEnabled"); }
-        }
-
-        private bool _lastPageButtonIsEnabled;
-        public bool LastPageButtonIsEnabled
-        {
-            get { return _lastPageButtonIsEnabled; }
-            set { _lastPageButtonIsEnabled = value; NotifyPropertyChanged("LastPageButtonIsEnabled"); }
-        }
-
-        private bool _previousPageButtonIsEnabled;
-        public bool PreviousPageButtonIsEnabled
-
-        {
-            get { return _previousPageButtonIsEnabled; }
-            set { _previousPageButtonIsEnabled = value; NotifyPropertyChanged("PreviousPageButtonIsEnabled"); }
-        }
-
-        private bool _firstPageButtonIsEnabled;
-        public bool FirstPageButtonIsEnabled
-
-        {
-            get { return _firstPageButtonIsEnabled; }
-            set { _firstPageButtonIsEnabled = value; NotifyPropertyChanged("FirstPageButtonIsEnabled"); }
-        }
-
-        private int _totalPages;
-        public int TotalPages
-        {
-            get { return _totalPages; }
-            set { _totalPages = value; NotifyPropertyChanged("TotalPages"); }
-        }
-        private string _stringLabelPagina;
-        public string StringLabelPagina
-        {
-            get { return _stringLabelPagina; }
-            set { _stringLabelPagina = value; NotifyPropertyChanged("StringLabelPagina"); }
-        }
     }
 }

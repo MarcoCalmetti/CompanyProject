@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CompanyProject.Models;
+using CompanyProject.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -13,44 +14,40 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CompanyProject.ViewModels;
 
 namespace CompanyProject.Views
 {
-    
-    public partial class ItemsListView : Page
+    public partial class AddEditOrderView : Window
     {
-        ItemListViewModel vm;
-        public ItemsListView()
+        AddEditOrderViewModel vm;
+        public AddEditOrderView()
         {
-            vm = new ItemListViewModel();
+            vm = new AddEditOrderViewModel();
             DataContext = vm;
             InitializeComponent();
         }
 
-        private void bResetFiltersRL_Click(object sender, RoutedEventArgs e)
+        public AddEditOrderView(OrderHeaderView Oh)
         {
-            vm.ResetFilters();
+            vm = new AddEditOrderViewModel(Oh);
+            DataContext = vm;
+            InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.FirstPage();
+            if (MessageBox.Show("Do you want to save these changes?", "Save", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                vm.SaveChanges();
+                Close();
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            vm.PreviousPage();
+            Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            vm.NextPage();
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            vm.LastPage();
-        }
+        
     }
 }

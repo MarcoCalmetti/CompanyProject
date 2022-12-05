@@ -36,13 +36,54 @@ namespace CompanyProject.Views
 
         private void buttNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            //AddOrderRightClick();
+            vm.AddOrder();
         }
 
         private void bResetFiltersOL_Click(object sender, RoutedEventArgs e)
         {
             vm.AzzeraFiltri();
-            //mettere azzerafiltri public nel vm
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            vm.FirstPage();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            vm.PreviousPage();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            vm.NextPage();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            vm.LastPage();
+        }
+
+        private void EditOrder_Click(object sender, RoutedEventArgs e)
+        {
+            vm.EditOrder();
+        }
+        private void DeleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to delete this Order?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                vm.DeleteOrder();
+
+        }
+
+        private void StartProduction_Click(object sender, RoutedEventArgs e)
+        {
+            vm.StartProduction();
+        }
+
+
+        private void EndProduction_Click(object sender, RoutedEventArgs e)
+        {
+            vm.EndProduction();
         }
     }
 }

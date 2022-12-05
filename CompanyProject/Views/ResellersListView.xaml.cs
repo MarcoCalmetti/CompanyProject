@@ -68,5 +68,10 @@ namespace CompanyProject.Views
         {
             vm.PreviousPage();
         }
+
+        private void MenuItem_Delete(object sender, RoutedEventArgs e)
+        {
+            vm.RemoveReseller();
+        }
     }
 }
