@@ -4,10 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CompanyProject.Views"
+      xmlns:converters="clr-namespace:CompanyProject.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OrdersListView">
-
+    <Page.Resources>
+        <converters:DataConverterConfirmedDeleteStartProduction x:Key="DataConverterConfirmedDeleteStartProduction"/>
+        <converters:DataConverterEndProduction x:Key="DataConverterEndProduction"/>
+    </Page.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="134*" />
@@ -37,7 +42,7 @@
         <Label Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" Margin="1.4,1,0.2,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="132">Order By:</Label>
         <ComboBox x:Name="cbOrderBy" ItemsSource="{Binding OrderByList}" SelectedItem="{ Binding SelectedOrderBy}"  Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Margin="22,22,22.6,21.6"></ComboBox>
         <Button x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6" Click="bResetFiltersOL_Click">ResetFilters</Button>
-        <DataGrid x:Name="OrdersList" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding ListOrders}" SelectedItem="{Binding SelectedOrder}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Margin="20,20.4,20,19.6" AutoGenerateColumns="False" MouseRightButtonDown="OrdersList_MouseRightButtonDown">
+        <DataGrid x:Name="OrdersList" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding ListOrders}" SelectedItem="{Binding SelectedOrder, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Margin="20,20.4,20,19.6" AutoGenerateColumns="False" MouseRightButtonDown="OrdersList_MouseRightButtonDown">
             <DataGrid.Columns >
                 <DataGridTextColumn Header=" Order Id " Binding= "{Binding OrderHeaderId}"/>
                 <DataGridTextColumn Header=" Reseller Name " Binding= "{Binding BusinessName}"/>
@@ -52,11 +57,11 @@
             <DataGrid.ContextMenu >
                 <ContextMenu > <!--scrivere tutti i click-->
                     <MenuItem Header="Show"/>
-                    <MenuItem Header="Edit" IsEnabled="{Binding EditModeClickEnabled}" Click="EditOrder_Click"/>
-                    <MenuItem Header="Delete" IsEnabled="{Binding DeleteModeClickEnabled}" Click="DeleteOrder_Click"/>
+                    <MenuItem Header="Edit" IsEnabled="{Binding Path=SelectedOrder.OrderStatusString, Converter={StaticResource DataConverterConfirmedDeleteStartProduction}}" Click="EditOrder_Click"/>
+                    <MenuItem Header="Delete" IsEnabled="{Binding Path=SelectedOrder.OrderStatusString, Converter={StaticResource DataConverterConfirmedDeleteStartProduction}}" Click="DeleteOrder_Click"/>
                     <Separator/>
-                    <MenuItem Header="Start production" IsEnabled="{Binding StartProductionClickEnabled}" Click="StartProduction_Click"/>
-                    <MenuItem Header="End Production" IsEnabled="{Binding EndProductionClickEnabled}" Click="EndProduction_Click"/>
+                    <MenuItem Header="Start production" IsEnabled="{Binding Path=SelectedOrder.OrderStatusString, Converter={StaticResource DataConverterConfirmedDeleteStartProduction}}" Click="StartProduction_Click"/>
+                        <MenuItem Header="End Production" IsEnabled="{Binding Path=SelectedOrder.OrderStatusString, Converter={StaticResource DataConverterEndProduction}}" Click="EndProduction_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

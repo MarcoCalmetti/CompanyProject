@@ -107,13 +107,10 @@ namespace CompanyProject.Controllers
                 using (CompanyContext context = new CompanyContext())
                 {
                     return await context.OrderHeaders
-                        .Join(context.Resellers,
-                        s => s.ResellerId,
-                        p => p.ResellerID,
-                        (s, p) => new OrderHeaderView
+                        .Select(s => new OrderHeaderView
                         {
                             OrderHeaderId = s.OrderHeaderId,
-                            BusinessName = p.BusinessName,
+                            BusinessName = s.ResellerId != null ? context.Resellers.Where(t => t.ResellerID == s.ResellerId).FirstOrDefault().BusinessName : null,
                             ResellerId = s.ResellerId,
                             OrderDate = s.OrderDate,
                             OrderReceipt = s.OrderReceipt,
@@ -124,8 +121,8 @@ namespace CompanyProject.Controllers
                             OrderStatusString = context.OrderStates.Where(t => t.Id == s.OrderStatus).FirstOrDefault().Name,
                             Note = s.Note
                         })
-                        .Where(s => !String.IsNullOrEmpty(BusinessName) ? s.BusinessName.Contains(BusinessName) : true)
-                        .Where(s => !String.IsNullOrEmpty(SelectedStatus) ? s.OrderStatusString.Contains(SelectedStatus) : true)
+                        .Where(s => !String.IsNullOrEmpty(BusinessName) ? context.Resellers.Where(t => t.ResellerID == s.ResellerId).FirstOrDefault().BusinessName.Contains(BusinessName) : true)
+                        .Where(s => SelectedStatus != null ? context.OrderStates.Where(t => t.Id == s.OrderStatus).FirstOrDefault().Name == SelectedStatus : true)
                         .Where(s => SelectedResellerID != null ? s.ResellerId == SelectedResellerID : true)
                         .CountAsync();
                 }

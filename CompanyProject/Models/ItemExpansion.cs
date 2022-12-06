@@ -9,5 +9,6 @@ namespace CompanyProject.Models
     partial class Item
     {
         public int? Quantity { get; set; }
+ 
     }
 }

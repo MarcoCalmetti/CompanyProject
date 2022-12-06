@@ -54,7 +54,7 @@ namespace CompanyProject.ViewModels
         public OrderHeaderView SelectedOrder
         {
             get { return selected_order; }
-            set { selected_order = value; NotifyPropertyChanged("SelectedOrder"); CheckEnabled(); }
+            set { selected_order = value; CheckEnabled(); NotifyPropertyChanged("SelectedOrder"); }
         }
 
         private string resellernamefilter;
@@ -111,7 +111,7 @@ namespace CompanyProject.ViewModels
         public string SelectedResellerName
         {
             get { return selected_resellername; }
-            set { selected_resellername = value; NotifyPropertyChanged("SelectedResellerName"); LoadData(); Page = 1; }
+            set { selected_resellername = value; NotifyPropertyChanged("SelectedResellerName"); Page = 1; }
         }
         private List<int?> res_id_list;
 
@@ -157,6 +157,7 @@ namespace CompanyProject.ViewModels
             ListOrders = await OrdersController.GetAll(ResellerNameFilter, SelectedStatus, SelectedID, SelectedOrderBy, Page, PageSize);
             checkButton();
             StringLabelPagina = "Page " + page + " of " + _totalPages;
+            CheckEnabled();
         }
         public void AzzeraFiltri()
         {

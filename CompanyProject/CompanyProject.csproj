@@ -74,6 +74,7 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ResellersController.cs" />
+    <Compile Include="Converters\DataConverter.cs" />
     <Compile Include="Models\CompanyDatabase.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

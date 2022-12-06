@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace CompanyProject.Models
 {
-    public class OrderHeaderView : OrderHeader 
+    public class OrderHeaderView : OrderHeader
     {
-        public double? TotalPrice {get; set;}
+        public double? TotalPrice { get; set; }
         public int? Leadtime { get; set; }
         public string BusinessName { get; set; }
         public string OrderStatusString { get; set; }
+
     }
 }
