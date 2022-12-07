@@ -93,37 +93,12 @@ namespace CompanyProject.Controllers
                     context.Resellers.Add(r);
                     await context.SaveChangesAsync();
                 }
-            }catch(ArgumentException e)
-            {
-                throw e;        
-            }catch(Exception e)
+            }
+            catch (ArgumentException e)
             {
                 throw e;
             }
-        }
-
-        private async static Task checkReseller(string BusinessName, string VAT, string Mail, string TelephoneNumber)
-        {
-            try
-            {
-                using (CompanyContext context = new CompanyContext())
-                {
-                    if (await context.Resellers.Select(s => s).Where(s => BusinessName != null ? s.BusinessName.Contains(BusinessName) : true).CountAsync() > 0)
-                        throw new ArgumentException("There is already another company  with the same Business name");
-
-                    if (await context.Resellers.Select(s => s).Where(s => VAT != null ? s.BusinessName.Contains(VAT) : true).CountAsync() > 0)
-                        throw new ArgumentException("There is already another company with the same VAT");
-
-                    if (await context.Resellers.Select(s => s).Where(s => Mail != null ? s.BusinessName.Contains(Mail) : true).CountAsync() > 0)
-                        throw new ArgumentException("There is already another company with the same Mail");
-
-                    if (await context.Resellers.Select(s => s).Where(s => TelephoneNumber != null ? s.BusinessName.Contains(TelephoneNumber) : true).CountAsync() > 0)
-                        throw new ArgumentException("There is already another company with the Telephone Number ");
-                }
-            } catch (ArgumentException e)
-            {
-                throw e;
-            } catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -136,7 +111,7 @@ namespace CompanyProject.Controllers
                 var temp = context.Resellers.FirstOrDefaultAsync(r => r.ResellerID == ResellerToUpdate.ResellerID);
                 temp.Result.Address = ResellerToUpdate.Address;
                 temp.Result.BusinessName = ResellerToUpdate.BusinessName;
-                temp.Result.City = ResellerToUpdate.BusinessName;
+                temp.Result.City = ResellerToUpdate.City;
                 temp.Result.Mail = ResellerToUpdate.Mail;
                 temp.Result.OrderHeaders = ResellerToUpdate.OrderHeaders;
                 temp.Result.PostalCode = ResellerToUpdate.PostalCode;
