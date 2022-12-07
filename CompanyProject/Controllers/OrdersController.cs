@@ -168,7 +168,7 @@ namespace CompanyProject.Controllers
                         context.OrderRows.Add(
                                 new OrderRow
                                 {
-                                    OrderHeaderId = await context.OrderHeaders.Select(s=>s.OrderHeaderId).MaxAsync() + 1,
+                                    OrderHeaderId = await context.OrderHeaders.Select(s=>s.OrderHeaderId).MaxAsync(),
                                     ItemId = i.Id,
                                     UnitPrice = i.Price,
                                     Quantity = (int)i.Quantity

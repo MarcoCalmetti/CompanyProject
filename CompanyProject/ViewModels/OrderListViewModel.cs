@@ -13,34 +13,6 @@ namespace CompanyProject.ViewModels
     {
         #region Properties
 
-        private bool _editModeClickEnabled;
-        public bool EditModeClickEnabled
-        {
-            get { return _editModeClickEnabled; }
-            set { _editModeClickEnabled = value; NotifyPropertyChanged("EditModeClickEnabled"); }
-        }
-
-        private bool _deleteModeClickEnabled;
-        public bool DeleteModeClickEnabled
-        {
-            get { return _deleteModeClickEnabled; }
-            set { _deleteModeClickEnabled = value; NotifyPropertyChanged("DeleteModeClickEnabled"); }
-        }
-
-        private bool _startProductionClickEnabled;
-        public bool StartProductionClickEnabled
-        {
-            get { return _startProductionClickEnabled; }
-            set { _startProductionClickEnabled = value; NotifyPropertyChanged("StartProductionClickEnabled"); }
-        }
-
-        private bool _endProductionClickEnabled;
-        public bool EndProductionClickEnabled
-        {
-            get { return _endProductionClickEnabled; }
-            set { _endProductionClickEnabled = value; NotifyPropertyChanged("StartProductionClickEnabled"); }
-        }
-
         private List<OrderHeaderView> list_order;
 
         public List<OrderHeaderView> ListOrders
@@ -54,7 +26,7 @@ namespace CompanyProject.ViewModels
         public OrderHeaderView SelectedOrder
         {
             get { return selected_order; }
-            set { selected_order = value; CheckEnabled(); NotifyPropertyChanged("SelectedOrder"); }
+            set { selected_order = value; NotifyPropertyChanged("SelectedOrder"); }
         }
 
         private string resellernamefilter;
@@ -142,7 +114,6 @@ namespace CompanyProject.ViewModels
         #region Methods
         private async Task Initialize()
         {
-            EditModeClickEnabled = true;
             Page = 1;
             PageSize = 10;
             OrderByList = new List<string>() {"Reseller Name", "OrderDate" };
@@ -157,7 +128,6 @@ namespace CompanyProject.ViewModels
             ListOrders = await OrdersController.GetAll(ResellerNameFilter, SelectedStatus, SelectedID, SelectedOrderBy, Page, PageSize);
             checkButton();
             StringLabelPagina = "Page " + page + " of " + _totalPages;
-            CheckEnabled();
         }
         public void AzzeraFiltri()
         {
@@ -186,18 +156,6 @@ namespace CompanyProject.ViewModels
         {
             await OrdersController.DeleteOrder(SelectedOrder);
             await Initialize();
-        }
-
-        public void CheckEnabled()
-        {
-            if(SelectedOrder != null)
-            {
-                EditModeClickEnabled = SelectedOrder.OrderStatusString == "Confermato" && SelectedOrder.ResellerId == null;
-                DeleteModeClickEnabled = SelectedOrder.OrderStatusString == "Confermato" && SelectedOrder.ResellerId == null;
-                StartProductionClickEnabled = SelectedOrder.OrderStatusString == "Confermato";
-                EndProductionClickEnabled = SelectedOrder.OrderStatusString == "InProduzione";
-            }
-            
         }
 
         public async Task StartProduction()
