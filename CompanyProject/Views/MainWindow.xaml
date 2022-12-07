@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompanyProject"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="600" MinWidth="1200" MaxHeight="600" MaxWidth="1200">
+        Title="MainWindow" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"/>
@@ -15,11 +17,56 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="0" Grid.Row="0" Click="Button_Click">Resellers</Button>
-        <Button Grid.Column="0" Grid.Row="1" Click="Button_Click_1">Orders</Button>
-        <Button Grid.Column="0" Grid.Row="2" Click="Button_Click_2">Items</Button>
 
+        <Border Grid.RowSpan="4" Background="#434242" CornerRadius="10 0 0 10">
+            <StackPanel Grid.RowSpan="4">
+
+           
+            <StackPanel>
+
+                <Border CornerRadius="10"  Height="30"  HorizontalAlignment="Center" Width="30" Margin="0,30,0,0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                            <GradientStop Color="#22A39F" Offset="0"/>
+                            <GradientStop Color="Violet" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" FontFamily="Agency FB" Foreground="White">CA</TextBlock>
+
+                </Border>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource menuTextBlock}" HorizontalAlignment="Center" FontSize="15" Margin="0,3,0,0" Text="CompanyApp © | Relese 1.0"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+
+            <Separator Height="0.7" Margin="15 15 15 20" Background="White" />
+
+            <Button Click="Button_Click" Style="{StaticResource menuButton}">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource menuTextBlock}"><Run Text="Resellers"/></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Click="Button_Click_1" Style="{StaticResource menuButton}">
+                <StackPanel>
+                    <TextBlock  Style="{StaticResource menuTextBlock}"><Run Text="Orders"/></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Click="Button_Click_2" Style="{StaticResource menuButton}" >
+                <StackPanel>
+                    <TextBlock  Style="{StaticResource menuTextBlock}"><Run Text="Items"/></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+     </Border>
+        
+        
+        
+        
         <!--<Image Width="600" Grid.Column="1" Grid.Row="0" Grid.RawSpan="3" Margin="10">
             <Image.Source>
                 <BitmapImage UriSource=".\Immagine\Logo.png"/> caricare il logo in una cartella Immagine e tutto dovrebbe funzionare cosi com'è
@@ -27,6 +74,8 @@
             </Image.Source>
         </Image>-->
 
-        <Frame x:Name="NavigationFrame" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Source="./ResellersListView.xaml" NavigationUIVisibility="Hidden" ></Frame>
+        <Border Background="#F3EFE0" CornerRadius="0 10 10 0" Grid.Column="1" Grid.RowSpan="4">
+            <Frame  x:Name="NavigationFrame" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Source="./ResellersListView.xaml" NavigationUIVisibility="Hidden" ></Frame>
+        </Border>
     </Grid>
 </Window>
