@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using CompanyProject.Models;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace CompanyProject.Controllers
 {
@@ -387,6 +389,21 @@ namespace CompanyProject.Controllers
             {
                 throw e;
             }
+        }
+
+        private async static Task GetOrdersFromAPI()
+        {
+            string APIAddress = @"https://80.211.144.168/api/v1";
+            string Token = ;
+            var option = new RestClientOptions(APIAddress)
+            {
+                RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true //verifica il certifcato (ssl/tls) e mettendolo a true, viene certificato
+            };
+
+            var client = new RestClient(option)
+            {
+                Authenticator = new JwtAuthenticator(Token)//andrà poi messo nell'app config
+            };
         }
 
 

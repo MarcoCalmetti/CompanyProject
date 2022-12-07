@@ -22,6 +22,7 @@ namespace CompanyProject.Models
     
         public int OrderHeaderId { get; set; }
         public Nullable<int> ResellerId { get; set; }
+        public string OrderIdAPI { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<int> OrderStatus { get; set; }
         public System.DateTime OrderReceipt { get; set; }
