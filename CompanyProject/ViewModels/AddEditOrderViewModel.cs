@@ -7,6 +7,8 @@ using CompanyProject.ViewModels;
 using CompanyProject.Models;
 using CompanyProject.Controllers;
 using CompanyProject.Views;
+using System.Collections;
+using System.ComponentModel;
 
 namespace CompanyProject.ViewModels
 {
@@ -87,5 +89,21 @@ namespace CompanyProject.ViewModels
         }
 
         #endregion
+
+        #region INotifyDataErrorInfo
+
+        private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
+        public bool HasErrors => throw new NotImplementedException();
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        public IEnumerable GetErrors(string propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        #endregion
+
     }
 }
