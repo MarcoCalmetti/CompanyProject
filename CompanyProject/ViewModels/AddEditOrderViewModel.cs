@@ -90,17 +90,8 @@ namespace CompanyProject.ViewModels
 
         #endregion
 
-        #region INotifyDataErrorInfo
+        #region IDataErrorInfo
 
-        private readonly Dictionary<string, List<string>> _propertyErrors = new Dictionary<string, List<string>>();
-        public bool HasErrors => throw new NotImplementedException();
-
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        public IEnumerable GetErrors(string propertyName)
-        {
-            throw new NotImplementedException();
-        }
 
 
         #endregion

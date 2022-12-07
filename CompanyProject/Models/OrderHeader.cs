@@ -11,7 +11,8 @@ namespace CompanyProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class OrderHeader
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +20,13 @@ namespace CompanyProject.Models
         {
             this.OrderRows = new HashSet<OrderRow>();
         }
-    
+        [Required(ErrorMessage = "Campo obbligatorio")]
         public int OrderHeaderId { get; set; }
         public Nullable<int> ResellerId { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<int> OrderStatus { get; set; }
+        
+        [Required(ErrorMessage = "Campo obbligatorio")]
         public System.DateTime OrderReceipt { get; set; }
         public Nullable<System.DateTime> ProductionStartDate { get; set; }
         public Nullable<System.DateTime> ProductionEndDate { get; set; }
