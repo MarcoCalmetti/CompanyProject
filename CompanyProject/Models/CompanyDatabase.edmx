@@ -23,6 +23,7 @@
           </Key>
           <Property Name="OrderHeaderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ResellerId" Type="int" />
+          <Property Name="OrderIdAPI" Type="varchar" MaxLength="100" />
           <Property Name="OrderDate" Type="datetime" />
           <Property Name="OrderStatus" Type="int" />
           <Property Name="OrderReceipt" Type="datetime" Nullable="false" />
@@ -53,6 +54,7 @@
             <PropertyRef Name="ResellerID" />
           </Key>
           <Property Name="ResellerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResellerIdAPI" Type="varchar" MaxLength="100" />
           <Property Name="BusinessName" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="VAT" Type="char" MaxLength="11" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
@@ -61,7 +63,7 @@
           <Property Name="Mail" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TelephoneNumber" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__OrderHead__Order__3D5E1FD2">
+        <Association Name="FK__OrderHead__Order__628FA481">
           <End Role="OrderStates" Type="Self.OrderStates" Multiplicity="0..1" />
           <End Role="OrderHeaders" Type="Self.OrderHeaders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -73,7 +75,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderHead__Resel__3C69FB99">
+        <Association Name="FK__OrderHead__Resel__619B8048">
           <End Role="Resellers" Type="Self.Resellers" Multiplicity="0..1" />
           <End Role="OrderHeaders" Type="Self.OrderHeaders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +87,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderRows__ItemI__412EB0B6">
+        <Association Name="FK__OrderRows__ItemI__66603565">
           <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
           <End Role="OrderRows" Type="Self.OrderRows" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +99,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderRows__Order__403A8C7D">
+        <Association Name="FK__OrderRows__Order__656C112C">
           <End Role="OrderHeaders" Type="Self.OrderHeaders" Multiplicity="0..1" />
           <End Role="OrderRows" Type="Self.OrderRows" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,19 +117,19 @@
           <EntitySet Name="OrderRows" EntityType="Self.OrderRows" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderStates" EntityType="Self.OrderStates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resellers" EntityType="Self.Resellers" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__OrderHead__Order__3D5E1FD2" Association="Self.FK__OrderHead__Order__3D5E1FD2">
+          <AssociationSet Name="FK__OrderHead__Order__628FA481" Association="Self.FK__OrderHead__Order__628FA481">
             <End Role="OrderStates" EntitySet="OrderStates" />
             <End Role="OrderHeaders" EntitySet="OrderHeaders" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderHead__Resel__3C69FB99" Association="Self.FK__OrderHead__Resel__3C69FB99">
+          <AssociationSet Name="FK__OrderHead__Resel__619B8048" Association="Self.FK__OrderHead__Resel__619B8048">
             <End Role="Resellers" EntitySet="Resellers" />
             <End Role="OrderHeaders" EntitySet="OrderHeaders" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderRows__ItemI__412EB0B6" Association="Self.FK__OrderRows__ItemI__412EB0B6">
+          <AssociationSet Name="FK__OrderRows__ItemI__66603565" Association="Self.FK__OrderRows__ItemI__66603565">
             <End Role="Items" EntitySet="Items" />
             <End Role="OrderRows" EntitySet="OrderRows" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderRows__Order__403A8C7D" Association="Self.FK__OrderRows__Order__403A8C7D">
+          <AssociationSet Name="FK__OrderRows__Order__656C112C" Association="Self.FK__OrderRows__Order__656C112C">
             <End Role="OrderHeaders" EntitySet="OrderHeaders" />
             <End Role="OrderRows" EntitySet="OrderRows" />
           </AssociationSet>
@@ -148,7 +150,7 @@
           <Property Name="Volume" Type="Double" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="LeadTime" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrderRows" Relationship="Self.FK__OrderRows__ItemI__412EB0B6" FromRole="Items" ToRole="OrderRows" />
+          <NavigationProperty Name="OrderRows" Relationship="Self.FK__OrderRows__ItemI__66603565" FromRole="Items" ToRole="OrderRows" />
         </EntityType>
         <EntityType Name="OrderHeader">
           <Key>
@@ -156,6 +158,7 @@
           </Key>
           <Property Name="OrderHeaderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ResellerId" Type="Int32" />
+          <Property Name="OrderIdAPI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="OrderDate" Type="DateTime" Precision="3" />
           <Property Name="OrderStatus" Type="Int32" />
           <Property Name="OrderReceipt" Type="DateTime" Nullable="false" Precision="3" />
@@ -163,9 +166,9 @@
           <Property Name="ProductionEndDate" Type="DateTime" Precision="3" />
           <Property Name="SalesOrderReference" Type="Int32" />
           <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="OrderState" Relationship="Self.FK__OrderHead__Order__3D5E1FD2" FromRole="OrderHeaders" ToRole="OrderStates" />
-          <NavigationProperty Name="Reseller" Relationship="Self.FK__OrderHead__Resel__3C69FB99" FromRole="OrderHeaders" ToRole="Resellers" />
-          <NavigationProperty Name="OrderRows" Relationship="Self.FK__OrderRows__Order__403A8C7D" FromRole="OrderHeaders" ToRole="OrderRows" />
+          <NavigationProperty Name="OrderState" Relationship="Self.FK__OrderHead__Order__628FA481" FromRole="OrderHeaders" ToRole="OrderStates" />
+          <NavigationProperty Name="Reseller" Relationship="Self.FK__OrderHead__Resel__619B8048" FromRole="OrderHeaders" ToRole="Resellers" />
+          <NavigationProperty Name="OrderRows" Relationship="Self.FK__OrderRows__Order__656C112C" FromRole="OrderHeaders" ToRole="OrderRows" />
         </EntityType>
         <EntityType Name="OrderRow">
           <Key>
@@ -176,8 +179,8 @@
           <Property Name="ItemId" Type="Int32" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="UnitPrice" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Item" Relationship="Self.FK__OrderRows__ItemI__412EB0B6" FromRole="OrderRows" ToRole="Items" />
-          <NavigationProperty Name="OrderHeader" Relationship="Self.FK__OrderRows__Order__403A8C7D" FromRole="OrderRows" ToRole="OrderHeaders" />
+          <NavigationProperty Name="Item" Relationship="Self.FK__OrderRows__ItemI__66603565" FromRole="OrderRows" ToRole="Items" />
+          <NavigationProperty Name="OrderHeader" Relationship="Self.FK__OrderRows__Order__656C112C" FromRole="OrderRows" ToRole="OrderHeaders" />
         </EntityType>
         <EntityType Name="OrderState">
           <Key>
@@ -185,13 +188,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK__OrderHead__Order__3D5E1FD2" FromRole="OrderStates" ToRole="OrderHeaders" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK__OrderHead__Order__628FA481" FromRole="OrderStates" ToRole="OrderHeaders" />
         </EntityType>
         <EntityType Name="Reseller">
           <Key>
             <PropertyRef Name="ResellerID" />
           </Key>
           <Property Name="ResellerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResellerIdAPI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="BusinessName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VAT" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -199,9 +203,9 @@
           <Property Name="PostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TelephoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK__OrderHead__Resel__3C69FB99" FromRole="Resellers" ToRole="OrderHeaders" />
+          <NavigationProperty Name="OrderHeaders" Relationship="Self.FK__OrderHead__Resel__619B8048" FromRole="Resellers" ToRole="OrderHeaders" />
         </EntityType>
-        <Association Name="FK__OrderRows__ItemI__412EB0B6">
+        <Association Name="FK__OrderRows__ItemI__66603565">
           <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
           <End Role="OrderRows" Type="Self.OrderRow" Multiplicity="*" />
           <ReferentialConstraint>
@@ -213,7 +217,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderHead__Order__3D5E1FD2">
+        <Association Name="FK__OrderHead__Order__628FA481">
           <End Role="OrderStates" Type="Self.OrderState" Multiplicity="0..1" />
           <End Role="OrderHeaders" Type="Self.OrderHeader" Multiplicity="*" />
           <ReferentialConstraint>
@@ -225,7 +229,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderHead__Resel__3C69FB99">
+        <Association Name="FK__OrderHead__Resel__619B8048">
           <End Role="Resellers" Type="Self.Reseller" Multiplicity="0..1" />
           <End Role="OrderHeaders" Type="Self.OrderHeader" Multiplicity="*" />
           <ReferentialConstraint>
@@ -237,7 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderRows__Order__403A8C7D">
+        <Association Name="FK__OrderRows__Order__656C112C">
           <End Role="OrderHeaders" Type="Self.OrderHeader" Multiplicity="0..1" />
           <End Role="OrderRows" Type="Self.OrderRow" Multiplicity="*" />
           <ReferentialConstraint>
@@ -255,19 +259,19 @@
           <EntitySet Name="OrderRows" EntityType="Self.OrderRow" />
           <EntitySet Name="OrderStates" EntityType="Self.OrderState" />
           <EntitySet Name="Resellers" EntityType="Self.Reseller" />
-          <AssociationSet Name="FK__OrderRows__ItemI__412EB0B6" Association="Self.FK__OrderRows__ItemI__412EB0B6">
+          <AssociationSet Name="FK__OrderRows__ItemI__66603565" Association="Self.FK__OrderRows__ItemI__66603565">
             <End Role="Items" EntitySet="Items" />
             <End Role="OrderRows" EntitySet="OrderRows" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderHead__Order__3D5E1FD2" Association="Self.FK__OrderHead__Order__3D5E1FD2">
+          <AssociationSet Name="FK__OrderHead__Order__628FA481" Association="Self.FK__OrderHead__Order__628FA481">
             <End Role="OrderStates" EntitySet="OrderStates" />
             <End Role="OrderHeaders" EntitySet="OrderHeaders" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderHead__Resel__3C69FB99" Association="Self.FK__OrderHead__Resel__3C69FB99">
+          <AssociationSet Name="FK__OrderHead__Resel__619B8048" Association="Self.FK__OrderHead__Resel__619B8048">
             <End Role="Resellers" EntitySet="Resellers" />
             <End Role="OrderHeaders" EntitySet="OrderHeaders" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderRows__Order__403A8C7D" Association="Self.FK__OrderRows__Order__403A8C7D">
+          <AssociationSet Name="FK__OrderRows__Order__656C112C" Association="Self.FK__OrderRows__Order__656C112C">
             <End Role="OrderHeaders" EntitySet="OrderHeaders" />
             <End Role="OrderRows" EntitySet="OrderRows" />
           </AssociationSet>
@@ -296,6 +300,7 @@
               <MappingFragment StoreEntitySet="OrderHeaders">
                 <ScalarProperty Name="OrderHeaderId" ColumnName="OrderHeaderId" />
                 <ScalarProperty Name="ResellerId" ColumnName="ResellerId" />
+                <ScalarProperty Name="OrderIdAPI" ColumnName="OrderIdAPI" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
                 <ScalarProperty Name="OrderReceipt" ColumnName="OrderReceipt" />
@@ -329,6 +334,7 @@
             <EntityTypeMapping TypeName="CompanyProjectModel.Reseller">
               <MappingFragment StoreEntitySet="Resellers">
                 <ScalarProperty Name="ResellerID" ColumnName="ResellerID" />
+                <ScalarProperty Name="ResellerIdAPI" ColumnName="ResellerIdAPI" />
                 <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
                 <ScalarProperty Name="VAT" ColumnName="VAT" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

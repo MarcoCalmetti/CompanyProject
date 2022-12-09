@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using CompanyProject.Models;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace CompanyProject.Controllers
 {
@@ -17,6 +19,7 @@ namespace CompanyProject.Controllers
             {
                 using (CompanyContext context = new CompanyContext())
                 {
+                    await GetOrdersFromAPI();
                     var QueryEF = context.OrderHeaders
                         //.Join(context.Resellers,
                         //s => s.ResellerId,
@@ -39,6 +42,7 @@ namespace CompanyProject.Controllers
                         .Select(s =>new OrderHeaderView
                         {
                             OrderHeaderId = s.OrderHeaderId,
+                            OrderIdAPI = s.OrderIdAPI,
                             BusinessName = s.ResellerId != null ? context.Resellers.Where(t => t.ResellerID == s.ResellerId).FirstOrDefault().BusinessName : null,
                             ResellerId = s.ResellerId,
                             OrderDate = s.OrderDate,
@@ -70,7 +74,7 @@ namespace CompanyProject.Controllers
                             break;
                     }
 
-                    List<OrderHeaderView> Lista = (List<OrderHeaderView>)await QueryEF.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+                    List<OrderHeaderView> Lista = await QueryEF.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
                     foreach (OrderHeaderView Oh in Lista)
                     {
@@ -349,6 +353,10 @@ namespace CompanyProject.Controllers
             {
                 using (CompanyContext context = new CompanyContext())
                 {
+                    if (Oh.OrderIdAPI != null)
+                    {
+                        await ModifyStatus(Oh, 30);
+                    }
                     var x = await context.OrderHeaders.FirstOrDefaultAsync(s=>s.OrderHeaderId == Oh.OrderHeaderId);
                     x.OrderStatus = (await context.OrderStates.FirstOrDefaultAsync(s => s.Name == "InProduzione")).Id;
                     x.ProductionStartDate = DateTime.Now;
@@ -372,6 +380,11 @@ namespace CompanyProject.Controllers
             {
                 using (CompanyContext context = new CompanyContext())
                 {
+                    if(Oh.OrderIdAPI != null)
+                    {
+                        await ModifyStatus(Oh, 40);
+                    }
+
                     var x = await context.OrderHeaders.FirstOrDefaultAsync(s => s.OrderHeaderId == Oh.OrderHeaderId);
                     x.OrderStatus = (await context.OrderStates.FirstOrDefaultAsync(s => s.Name == "Prodotto")).Id;
                     x.ProductionEndDate = DateTime.Now;
@@ -389,6 +402,90 @@ namespace CompanyProject.Controllers
             }
         }
 
+        private async static Task ModifyStatus(OrderHeaderView Oh, int status)
+        {
+            using (var context = new CompanyContext())
+            {
+                string APIAddress = @"https://webhook.site/040760a8-3476-4188-83d9-d64f4b76be53";
+                //string APIAddress = @"https://80.211.144.168/api/v1";
+                string Token = "WQai_A5gCrbI010weecb02SAN9t2YXaSrb0HixAfFk0rtdRR1Ydpf63EU11jDkyAJ-rWpHqD1doWwaf4G4RpnMFoKAPhv4kKFS0MYXR0n29jZ5emu-6_BWa8OcFzylvkDx0SpeUt1U2TAgC9dq2S8NYcVNRupJHg9KOYez0UsRedgTcBagOj1gXtA44pbamNcRMEk8BVOEWMk0xscb1FcHHBAfwXQlQI25LE2n9rnQAMJeZ7ZY-n1vSCEXaPcKcsUwu4sxWIhQu2uSVsvZLnulFSE-DCpUnRkWD-ACyMW7CH_p0tlXIer3QWdPxrrVYDfMMprYtoXzlOlFNnsM7emdGbSJ-T-9VLOCPWe7oxHoA";
+                var option = new RestClientOptions(APIAddress)
+                {
+                    RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true //verifica il certifcato (ssl/tls) e mettendolo a true, viene certificato
+                };
 
+                var client = new RestClient(option)
+                {
+                    Authenticator = new JwtAuthenticator(Token)//andrà poi messo nell'app config
+                };
+
+                var x = new RestRequest(Oh.OrderIdAPI + @"/state");
+
+                x.AddBody(new
+                {
+                    id = status
+                });
+
+                client.Put(x);
+            }
+        }
+
+
+        private async static Task GetOrdersFromAPI()
+        {
+            using (var context = new CompanyContext())
+            {
+                string APIAddress = @"https://80.211.144.168/api/v1";
+                string Token = "WQai_A5gCrbI010weecb02SAN9t2YXaSrb0HixAfFk0rtdRR1Ydpf63EU11jDkyAJ-rWpHqD1doWwaf4G4RpnMFoKAPhv4kKFS0MYXR0n29jZ5emu-6_BWa8OcFzylvkDx0SpeUt1U2TAgC9dq2S8NYcVNRupJHg9KOYez0UsRedgTcBagOj1gXtA44pbamNcRMEk8BVOEWMk0xscb1FcHHBAfwXQlQI25LE2n9rnQAMJeZ7ZY-n1vSCEXaPcKcsUwu4sxWIhQu2uSVsvZLnulFSE-DCpUnRkWD-ACyMW7CH_p0tlXIer3QWdPxrrVYDfMMprYtoXzlOlFNnsM7emdGbSJ-T-9VLOCPWe7oxHoA";
+                var option = new RestClientOptions(APIAddress)
+                {
+                    RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true //verifica il certifcato (ssl/tls) e mettendolo a true, viene certificato
+                };
+
+                var client = new RestClient(option)
+                {
+                    Authenticator = new JwtAuthenticator(Token)//andrà poi messo nell'app config
+                };
+                var request = new RestRequest("orders");
+
+                var response = await client.GetAsync<List<OrderAPI>>(request);
+
+                foreach(OrderAPI OA in response)
+                {
+                    if((await context.OrderHeaders.CountAsync(s=>s.OrderIdAPI == OA.Id)) == 0 && (await context.Resellers.CountAsync(s => s.ResellerIdAPI == OA.ResellerId)) > 0)
+                    {
+                        OrderHeader NewOh = new OrderHeader
+                        {
+                            OrderIdAPI = OA.Id,
+                            ResellerId = (await context.Resellers.Where(s => s.ResellerIdAPI == OA.ResellerId).FirstOrDefaultAsync()).ResellerID,
+                            OrderDate = OA.OrderDate,
+                            OrderStatus = OA.OrderStateId,
+                            OrderReceipt = (DateTime)OA.SendDate,
+                            ProductionStartDate = null,
+                            ProductionEndDate = null,
+                            SalesOrderReference = OA.CustomerId,
+                            Note = OA.Notes,
+                        };
+
+                        context.OrderHeaders.Add(NewOh);
+                        await context.SaveChangesAsync();
+
+                        List<OrderRow> NewOrderRows = new List<OrderRow>();
+                        foreach(OrderItem OI in OA.OrderItems)
+                        {
+                            NewOrderRows.Add(new OrderRow
+                            {
+                                OrderHeaderId = await context.OrderHeaders.MaxAsync(s => s.OrderHeaderId),
+                                ItemId = OI.ItemId,
+                                Quantity = OI.Quantity,
+                                UnitPrice = OI.UnitaryPrice
+                            });
+                        }
+                        context.OrderRows.AddRange(NewOrderRows);
+                        await context.SaveChangesAsync();
+                    } 
+                }
+            }
+        }
     }
 }

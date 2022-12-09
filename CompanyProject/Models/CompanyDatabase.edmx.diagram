@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fa0b97b805364ec49cb85e4d9faf8539" Name="Diagram1">
-        <EntityTypeShape EntityType="CompanyProjectModel.Item" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+      <Diagram DiagramId="59ddd3a720be4cbc8cfc75a655cbd16f" Name="Diagram1">
+        <EntityTypeShape EntityType="CompanyProjectModel.Item" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyProjectModel.OrderHeader" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CompanyProjectModel.OrderRow" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CompanyProjectModel.OrderState" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyProjectModel.OrderRow" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyProjectModel.OrderState" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyProjectModel.Reseller" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="CompanyProjectModel.FK__OrderRows__ItemI__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyProjectModel.FK__OrderHead__Order__3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyProjectModel.FK__OrderHead__Resel__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="CompanyProjectModel.FK__OrderRows__Order__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyProjectModel.FK__OrderRows__ItemI__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyProjectModel.FK__OrderHead__Order__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyProjectModel.FK__OrderHead__Resel__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="CompanyProjectModel.FK__OrderRows__Order__656C112C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

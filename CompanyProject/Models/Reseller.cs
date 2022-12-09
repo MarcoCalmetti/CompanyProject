@@ -21,6 +21,7 @@ namespace CompanyProject.Models
         }
     
         public int ResellerID { get; set; }
+        public string ResellerIdAPI { get; set; }
         public string BusinessName { get; set; }
         public string VAT { get; set; }
         public string Address { get; set; }
