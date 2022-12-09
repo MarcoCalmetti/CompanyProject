@@ -13,33 +13,23 @@ namespace CompanyProject.Models
     {
     }
 
-    [DataContract]
     public class ResellerMetaData
     {
-        [DataMember]
         public int ResellerID { get; set; }
-        [DataMember]
         [Required(ErrorMessage = "Campo obbligatorio")]
+        //[Range(0,float.MaxValue,ErrorMessage ="Importo negativo")]??
         public string BusinessName { get; set; }
-        [DataMember]
         [Required(ErrorMessage = "Campo obbligatorio")]
         public string VAT { get; set; }
-        [DataMember]
         [Required(ErrorMessage = "Campo obbligatorio")]
         public string Address { get; set; }
-        [DataMember]
         [Required(ErrorMessage = "Campo obbligatorio")]
         public string City { get; set; }
-        [DataMember]
         [Required(ErrorMessage = "Campo obbligatorio")]
         public string PostalCode { get; set; }
-        [DataMember]
         [Required(ErrorMessage = "Campo obbligatorio")]
         public string Mail { get; set; }
-        [DataMember]
         [Required(ErrorMessage = "Campo obbligatorio")]
         public string TelephoneNumber { get; set; }
-        //public virtual ICollection<OrderHeader> OrderHeaders { get; set; }
-        //questo in teoria non serve validarlo, provare
     }
 }
