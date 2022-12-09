@@ -39,7 +39,7 @@
                 <DataGridTextColumn Binding="{Binding Volume}" IsReadOnly="True" Header=" Volume " />
                 <DataGridTextColumn Binding="{Binding Price}" IsReadOnly="True" Header=" Unit Price " />
                 <DataGridTextColumn Binding="{Binding LeadTime}" IsReadOnly="True" Header=" Lead Time " />
-                <DataGridTextColumn Binding="{Binding Quantity}" IsReadOnly="False" Header=" Quantity " />
+                <DataGridTextColumn Binding="{Binding Quantity, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header=" Quantity " />
             </DataGrid.Columns>
         </DataGrid>
         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Center" Content="Notes:"></Label>

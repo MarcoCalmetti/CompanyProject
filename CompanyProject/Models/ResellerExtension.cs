@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CompanyProject.Models
 {
     [MetadataTypeAttribute(typeof(ResellerMetaData))]
-    public partial class ResellerExtension
+    public partial class Reseller
     {
     }
 
