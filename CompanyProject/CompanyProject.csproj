@@ -130,15 +130,18 @@
       <DependentUpon>CompanyDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderHeaderExpansion.cs" />
+    <Compile Include="Models\OrderHeaderExtension.cs" />
     <Compile Include="Models\OrderRow.cs">
       <DependentUpon>CompanyDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderRowExtension.cs" />
     <Compile Include="Models\OrderState.cs">
       <DependentUpon>CompanyDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Reseller.cs">
       <DependentUpon>CompanyDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResellerExtension.cs" />
     <Compile Include="ViewModels\AddEditOrderViewModel.cs" />
     <Compile Include="ViewModels\AddEditResellerViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
