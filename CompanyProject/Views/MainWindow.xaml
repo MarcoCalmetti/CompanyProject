@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CompanyProject"
+        xmlns:local="clr-namespace:CompanyProject" xmlns:viewmodels="clr-namespace:CompanyProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
 
@@ -77,5 +77,6 @@
         <Border Background="#F3EFE0" CornerRadius="0 10 10 0" Grid.Column="1" Grid.RowSpan="4">
             <Frame  x:Name="NavigationFrame" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Source="./ResellersListView.xaml" NavigationUIVisibility="Hidden" ></Frame>
         </Border>
+        <Button Style="{StaticResource menuButtonClose}" Grid.Column="3" Click="Button_Click_Close">X</Button>
     </Grid>
 </Window>

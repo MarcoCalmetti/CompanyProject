@@ -73,5 +73,6 @@ namespace CompanyProject.Views
         {
             vm.RemoveReseller();
         }
+
     }
 }

@@ -48,6 +48,9 @@ namespace CompanyProject.Views
             Close();
         }
 
-        
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
