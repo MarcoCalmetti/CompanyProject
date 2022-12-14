@@ -43,7 +43,11 @@ namespace CompanyProject
         }
         private void NavigationFrame_Navigated(object sender, NavigationEventArgs e)
         {
-
+            
+        }
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

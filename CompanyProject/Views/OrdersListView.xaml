@@ -31,17 +31,22 @@
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Width="46">Orders</Label>
-        <Button x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="40" Click="buttNewOrder_Click" >Add New Order</Button>
-        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1,1,1.6,0" HorizontalAlignment="Center" Height="26" Width="131">Select by reseller name:</Label>
-        <TextBox x:Name="tbResellerName" Text= "{Binding ResellerNameFilter, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="0" Grid.Row="1" Margin="22,22,21.6,21.6"></TextBox>
-        <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="3.8,1,4,0" HorizontalAlignment="Center" Height="26" Width="125">Select by order status:</Label>
-        <ComboBox x:Name="cbOrderStatus" ItemsSource="{Binding ListStatus}" SelectedItem="{Binding SelectedStatus}" Grid.Column="1" Grid.Row="1"  Margin="21.8,22,22,21.6"></ComboBox>
-        <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="9,1,8.6,0" HorizontalAlignment="Center" Height="26" Width="116">Select by reseller id:</Label>
-        <ComboBox x:Name="cbResellerId" ItemsSource="{Binding ResellersIDList}" SelectedItem="{ Binding SelectedID}"  Grid.Column="2" Grid.Row="1"  Margin="22,22,22.6,21.6"></ComboBox>
-        <Label Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" Margin="1.4,1,0.2,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="132">Order By:</Label>
-        <ComboBox x:Name="cbOrderBy" ItemsSource="{Binding OrderByList}" SelectedItem="{ Binding SelectedOrderBy}"  Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Margin="22,22,22.6,21.6"></ComboBox>
-        <Button x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6" Click="bResetFiltersOL_Click">ResetFilters</Button>
+        <Label Style="{StaticResource menuLabel}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Width="46">Orders</Label>
+        <Button Style="{StaticResource menuButton}" x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="39.8,40,41,35" Click="buttNewOrder_Click" >
+            <TextBlock Style="{StaticResource menuTextBlock}">Add New Order</TextBlock></Button>
+        <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="1,1,1.6,0" HorizontalAlignment="Center" Height="26" Width="131">Select by reseller name:</Label>
+        <TextBox Style="{StaticResource menuTextBox}" x:Name="tbResellerName" Text= "{Binding ResellerNameFilter, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="0" Grid.Row="1" Margin="23,23,20.6,20.6"></TextBox>
+        <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="3.8,1,4,0" HorizontalAlignment="Center" Height="26" Width="125">Select by order status:</Label>
+        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbOrderStatus" ItemsSource="{Binding ListStatus}" SelectedItem="{Binding SelectedStatus}" Grid.Column="1" Grid.Row="1"  Margin="21.8,22,22,21.6"></ComboBox>
+        <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="9,1,8.6,0" HorizontalAlignment="Center" Height="26" Width="116">Select by reseller id:</Label>
+        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbResellerId" ItemsSource="{Binding ResellersIDList}" SelectedItem="{ Binding SelectedID}"  Grid.Column="2" Grid.Row="1"  Margin="21.8,22,23,21.6"></ComboBox>
+        <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" Margin="1.4,1,0.2,0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Height="26" Width="132">Order By:</Label>
+
+        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbOrderBy" ItemsSource="{Binding OrderByList}" SelectedItem="{ Binding SelectedOrderBy}"  Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"  Margin="22,22,22.6,21.6"></ComboBox>
+
+        <Button Style="{StaticResource menuButton}" x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6" Click="bResetFiltersOL_Click">
+            <TextBlock Style="{StaticResource menuTextBlock}">Reset Filter</TextBlock>
+        </Button>
         <DataGrid x:Name="OrdersList" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding ListOrders}" SelectedItem="{Binding SelectedOrder, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="7" Margin="20,20.4,20,19.6" AutoGenerateColumns="False" MouseRightButtonDown="OrdersList_MouseRightButtonDown">
             <DataGrid.Columns >
                 <DataGridTextColumn Header=" Order Id " Binding= "{Binding OrderHeaderId}"/>
@@ -65,11 +70,19 @@
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>
-        <Button Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Right" Width="80" Height="19" IsEnabled="{Binding FirstPageButtonIsEnabled}" Click="Button_Click">&lt;&lt;</Button>
-        <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="42.8,5.4,10,0" HorizontalAlignment="Center" Width="80" Height="19" IsEnabled="{Binding PreviousPageButtonIsEnabled}" Click="Button_Click_1">&lt;</Button>
-        <Button Grid.Column="3" Grid.Row="3" VerticalAlignment="Top" Margin="10,5.4,43.6,0"   HorizontalAlignment="Center" Width="80" Height="19" IsEnabled="{Binding NextPageButtonIsEnabled}" Click="Button_Click_2">&gt;</Button>
-        <Button Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0"  HorizontalAlignment="Left" Width="80" Height="19" Grid.ColumnSpan="2" IsEnabled="{Binding LastPageButtonIsEnabled}" Click="Button_Click_3">&gt;&gt;</Button>
-        <Label Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="4.8,5,5.6,0" Height="26" Content="{Binding StringLabelPagina}"></Label>
-
+        <Button Style="{StaticResource menuButton}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Right" Width="80" IsEnabled="{Binding FirstPageButtonIsEnabled}" Click="Button_Click">
+            <TextBlock Style="{StaticResource menuTextBlock}">← ←</TextBlock>
+        </Button>
+        <Button Style="{StaticResource menuButton}" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="42.8,5.4,10,0" HorizontalAlignment="Center" Width="80" IsEnabled="{Binding PreviousPageButtonIsEnabled}" Click="Button_Click_1">
+            <TextBlock Style="{StaticResource menuTextBlock}">←</TextBlock>
+        </Button>
+        <Button Style="{StaticResource menuButton}" Grid.Column="3" Grid.Row="3" VerticalAlignment="Top" Margin="10,5.4,43.6,0"   HorizontalAlignment="Center" Width="80" IsEnabled="{Binding NextPageButtonIsEnabled}" Click="Button_Click_2">
+            <TextBlock Style="{StaticResource menuTextBlock}">→</TextBlock>
+        </Button>
+        <Button Style="{StaticResource menuButton}" Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,0,0"  HorizontalAlignment="Left" Width="80" Grid.ColumnSpan="2" IsEnabled="{Binding LastPageButtonIsEnabled}" Click="Button_Click_3">
+            <TextBlock Style="{StaticResource menuTextBlock}">→ →</TextBlock>
+        </Button>
+        <Label Style="{StaticResource menuLabel}" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="4.8,5,5.6,0" Height="26" Content="{Binding StringLabelPagina}"></Label>
+        <Button Style="{StaticResource menuButtonClose}" Grid.Column="6" Click="Button_Click_4">X</Button>
     </Grid>
 </Page>
