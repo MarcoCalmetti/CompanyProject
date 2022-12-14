@@ -21,23 +21,6 @@ namespace CompanyProject.Controllers
                 {
                     await GetOrdersFromAPI();
                     var QueryEF = context.OrderHeaders
-                        //.Join(context.Resellers,
-                        //s => s.ResellerId,
-                        //p => p.ResellerID,
-                        //(s, p) => new OrderHeaderView
-                        //{
-                        //    OrderHeaderId = s.OrderHeaderId,
-                        //    BusinessName = p.BusinessName,
-                        //    ResellerId = s.ResellerId,
-                        //    OrderDate = s.OrderDate,
-                        //    OrderReceipt = s.OrderReceipt,
-                        //    ProductionStartDate = s.ProductionStartDate,
-                        //    ProductionEndDate = s.ProductionEndDate,
-                        //    OrderStatus = s.OrderStatus,
-                        //    SalesOrderReference = s.SalesOrderReference,
-                        //    OrderStatusString = context.OrderStates.Where(t => t.Id == s.OrderStatus).FirstOrDefault().Name,
-                        //    Note = s.Note
-                        //})
 
                         .Select(s =>new OrderHeaderView
                         {
@@ -406,9 +389,9 @@ namespace CompanyProject.Controllers
         {
             using (var context = new CompanyContext())
             {
-                string APIAddress = @"https://webhook.site/040760a8-3476-4188-83d9-d64f4b76be53";
-                //string APIAddress = @"https://80.211.144.168/api/v1";
-                string Token = "WQai_A5gCrbI010weecb02SAN9t2YXaSrb0HixAfFk0rtdRR1Ydpf63EU11jDkyAJ-rWpHqD1doWwaf4G4RpnMFoKAPhv4kKFS0MYXR0n29jZ5emu-6_BWa8OcFzylvkDx0SpeUt1U2TAgC9dq2S8NYcVNRupJHg9KOYez0UsRedgTcBagOj1gXtA44pbamNcRMEk8BVOEWMk0xscb1FcHHBAfwXQlQI25LE2n9rnQAMJeZ7ZY-n1vSCEXaPcKcsUwu4sxWIhQu2uSVsvZLnulFSE-DCpUnRkWD-ACyMW7CH_p0tlXIer3QWdPxrrVYDfMMprYtoXzlOlFNnsM7emdGbSJ-T-9VLOCPWe7oxHoA";
+                //string APIAddress = @"https://webhook.site/040760a8-3476-4188-83d9-d64f4b76be53";
+                string APIAddress = @"https://80.211.144.168/api/v1/orders";
+                string Token = "7sZ3lt3izggf8XTA1M3sKSnALdZl0hPwsd-QNcpSfDpFCFtUHw_Jnq6SdmI9YCaQL00Qvbp4SHxT9oCR4AVNTMqPEQ8DKk4M3tUBLl6dIfS6YPwiHTRnSrwKZrBEi3d9L2gwxMD97qEjlW0aOTP2dPxXh2fzswUimRE2NYJMqn05KoRtjwbhzT4Z83aHR6n3uPXbwWx3mpDj9ARZhSZaBj0qNTLTZj5eISTMT3qhbNX51IQBMFZFhUhS7_RyfOAOwNOUFWPZ2g_ggozNh33Y8e_jySg_wI6yMYwXSXtd8n_awNlFNtMNrmLIQSWSphOZiRJTia5Z6PiaSyiwgfUf6s4vFNeEYy3SmJPhjtfLVlU";
                 var option = new RestClientOptions(APIAddress)
                 {
                     RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true //verifica il certifcato (ssl/tls) e mettendolo a true, viene certificato
@@ -461,8 +444,8 @@ namespace CompanyProject.Controllers
                             OrderDate = OA.OrderDate,
                             OrderStatus = OA.OrderStateId,
                             OrderReceipt = (DateTime)OA.SendDate,
-                            ProductionStartDate = null,
-                            ProductionEndDate = null,
+                            ProductionStartDate = OA.StartProductionDate,
+                            ProductionEndDate = OA.StopProductionDate,
                             SalesOrderReference = OA.CustomerId,
                             Note = OA.Notes,
                         };
