@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:CompanyProject"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
+        
         <Style TargetType="TextBox">
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
