@@ -32,9 +32,7 @@
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="58,1,58,0" HorizontalAlignment="Center" Height="26" Width="84">Select by VAT:</Label>
         <TextBox Style="{StaticResource menuTextBox}" x:Name="tbVAT"  Grid.Column="1" Grid.Row="1"  Margin="22,22,22,21.6" Text="{Binding VAT, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="59,1,59,0" HorizontalAlignment="Center" Height="26" Width="82">Select by city:</Label>
-        <ComboBox x:Name="cbCity"  BorderBrush="#22A39F" BorderThickness="1" Grid.Column="2" Grid.Row="1" Margin="22,22,22,21.6" ItemsSource="{Binding ListCity}" SelectedItem = "{Binding SelectedCity}" FontFamily="Agency FB" FontSize="14">
-            <TextBlock Style="{StaticResource menuTextBlock}"/>
-        </ComboBox>
+        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbCity"  BorderBrush="#22A39F" BorderThickness="1" Grid.Column="2" Grid.Row="1" Margin="22,22,22,21.6" ItemsSource="{Binding ListCity}" SelectedItem = "{Binding SelectedCity}" FontFamily="Agency FB" FontSize="14"/>
         <Button Style="{StaticResource menuButton}" x:Name="bResetFiltersRL" Grid.Column="3" Grid.Row="1" Margin="20,20,20,19.6" Click="bResetFiltersRL_Click">
             <TextBlock Style="{StaticResource menuTextBlock}">Reset Filters</TextBlock>
          </Button>
@@ -42,7 +40,7 @@
                   ItemsSource="{Binding ListResellers}" SelectedItem="{Binding SelectedReseller}" MouseRightButtonDown="ResellersList_MouseRightButtonDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header=" ResellerID " Binding="{Binding ResellerID}"/>
-                <DataGridTextColumn Header=" BuisnessName " Binding="{Binding BusinessName}" />
+                <DataGridTextColumn Header=" BusinessName " Binding="{Binding BusinessName}" />
                 <DataGridTextColumn Header=" VAT " Binding="{Binding VAT}"/>
                 <DataGridTextColumn Header=" Address" Binding="{Binding Address}"/>
                 <DataGridTextColumn Header=" City " Binding="{Binding City}"/>

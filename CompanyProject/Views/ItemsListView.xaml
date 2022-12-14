@@ -38,9 +38,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header=" Item Code " Binding="{Binding Code}"/>
                 <DataGridTextColumn Header=" Item Name " Binding="{Binding LeadTime}"/>
-                <DataGridTextColumn Header=" Price " Binding="{Binding Price}"/>
+                <DataGridTextColumn Header=" Price " Binding="{Binding Price, StringFormat='0.00 €'}"/>
                 <DataGridTextColumn Header=" Lead Time " Binding="{Binding Name}"/>
-                <DataGridTextColumn Header=" Weight " Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header=" Weight " Binding="{Binding Weight, StringFormat='0.00 Kg'}" />
                 <DataGridTextColumn Header=" Volume " Binding="{Binding Volume}"/>
             </DataGrid.Columns>
         </DataGrid>

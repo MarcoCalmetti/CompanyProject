@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:CompanyProject.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="{Binding EditAddLabel}" Background="Transparent" WindowStyle="None" ResizeMode="NoResize"  Height="450" Width="800">
-    <Border Background="#F3EFE0" BorderThickness="5"  BorderBrush="#434242" CornerRadius="15">
+      Title="{Binding EditAddLabel}" Background="Transparent" WindowStyle="None" BorderThickness="0" ResizeMode="NoResize" Height="450" Width="800">
+    <Border Background="#e2eafc" BorderThickness="0" CornerRadius="15">
         <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -23,7 +23,7 @@
                 <RowDefinition Height="0.3*"/>
             </Grid.RowDefinitions>
 
-            <Label Style="{StaticResource menuLabel}" x:Name="lEditOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Content="{Binding EditAddLabel}"></Label>
+            <Label FontSize="19" FontWeight="Medium" Style="{StaticResource menuLabel}" x:Name="lEditOrder" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Content="{Binding EditAddLabel}"></Label>
 
             <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Label Style="{StaticResource menuLabel}" Margin="5 0 0 0" Content="Id: "></Label>
@@ -42,6 +42,7 @@
                     <DataGridTextColumn Binding="{Binding Quantity}" IsReadOnly="False" Header=" Quantity " />
                 </DataGrid.Columns>
             </DataGrid>
+
             <Label Style="{StaticResource menuLabel}" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Margin="5" HorizontalAlignment="Center" Content="Notes:"></Label>
             <TextBox Style="{StaticResource menuTextBoxType}" Text="{Binding Notes}" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5" Height="55" Width="250" HorizontalAlignment="Right"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Center">Do you want to confirm the order?</Label>
