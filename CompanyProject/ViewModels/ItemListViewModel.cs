@@ -21,6 +21,13 @@ namespace CompanyProject.ViewModels
             set { list_items = value; NotifyPropertyChanged("ListItems"); }
         }
 
+        private List<string> _orderByList;
+
+        public List<string> OrderByList
+        {
+            get { return _orderByList; }
+            set { _orderByList = value; NotifyPropertyChanged("OrderByList"); }
+        }
         //Creare forse oggetto items? 
 
         private string filtro_name;
@@ -37,6 +44,14 @@ namespace CompanyProject.ViewModels
         {
             get { return filtro_itemcode; }
             set { filtro_itemcode = value; NotifyPropertyChanged("FilterItemCode"); LoadData(); Page = 1; }
+        }
+
+        private string _selectedOrderBy;
+
+        public string SelectedOrderBy
+        {
+            get { return _selectedOrderBy; }
+            set { _selectedOrderBy = value; NotifyPropertyChanged("SelectedOrderBy"); LoadData(); Page = 1; }
         }
 
         private float min_price;
@@ -73,23 +88,25 @@ namespace CompanyProject.ViewModels
         {
             Page = 1;
             PageSize = 10;
-            
+            OrderByList = new List<string>() { "Alphabetical Order", "Descending Price", "Ascending Price" };
             LoadData();
         }
 
         public async Task LoadData()
         {
             _totalPages = (int)Math.Ceiling(await ItemsController.GetItemsNumber(FilterName, FilterItemCode)/ (double)PageSize);
-            ListItems = await ItemsController.GetAll(FilterName, FilterItemCode, Page, PageSize);
+            ListItems = await ItemsController.GetAll(FilterName, FilterItemCode, SelectedOrderBy,  Page, PageSize);
             checkButton();
             StringLabelPagina = "Page " + page + " of " + _totalPages;
         }
         public void ResetFilters()
         {
+            _selectedOrderBy = null;
             filtro_name = null;
             filtro_itemcode = null;
             NotifyPropertyChanged("FilterName");
             NotifyPropertyChanged("FilterItemCode");
+            NotifyPropertyChanged("SelectedOrderBy");
             LoadData();
         
         }

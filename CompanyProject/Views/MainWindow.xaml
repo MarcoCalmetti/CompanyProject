@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompanyProject" xmlns:viewmodels="clr-namespace:CompanyProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Icon="C:\Users\CorsoE80\Source\Repos\CompanyProject\CompanyProject\Views\IMGS\Cattura.PNG"
+        Icon="IMGS\Cattura.PNG"
         Title="MainWindow" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
 
 

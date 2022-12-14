@@ -13,19 +13,15 @@ namespace CompanyProject.Models
     {
     }
 
-    [DataContract]
     public class OrderRowMetaData
     {
-        [DataMember]
         public int OrderRowId { get; set; }
-        [DataMember]
         public Nullable<int> OrderHeaderId { get; set; }
-        [DataMember]
         public Nullable<int> ItemId { get; set; }
-        [DataMember]
+
         [Required(ErrorMessage = "Campo obbligatorio")]
         public int Quantity { get; set; }
-        [DataMember]
+
         [Required(ErrorMessage = "Campo obbligatorio")]
         public double UnitPrice { get; set; }
 

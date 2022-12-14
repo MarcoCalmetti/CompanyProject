@@ -110,6 +110,7 @@ namespace CompanyProject.Controllers
             {
                 var temp = context.Resellers.FirstOrDefaultAsync(r => r.ResellerID == ResellerToUpdate.ResellerID);
                 temp.Result.Address = ResellerToUpdate.Address;
+                temp.Result.ResellerIdAPI = ResellerToUpdate.ResellerIdAPI;
                 temp.Result.BusinessName = ResellerToUpdate.BusinessName;
                 temp.Result.City = ResellerToUpdate.City;
                 temp.Result.Mail = ResellerToUpdate.Mail;
@@ -125,7 +126,7 @@ namespace CompanyProject.Controllers
         {
             try
             {
-                if(await checkForDelete(ResellerToDelete))
+                if(!checkForDelete(ResellerToDelete))
                 {
                     using (CompanyContext context = new CompanyContext())
                     {
@@ -150,15 +151,15 @@ namespace CompanyProject.Controllers
             }
         }
 
-        private async static Task<bool> checkForDelete(Reseller ResellerToDelete)
+        public static bool checkForDelete(Reseller ResellerToDelete)
         {
             try
             {
                 using (CompanyContext context = new CompanyContext())
                 {
-                    if (await context.Resellers.CountAsync(r=>r.ResellerID == ResellerToDelete.ResellerID) > 0)
-                        return true;
-                    return false;
+                    if (context.OrderHeaders.Count(r=>r.ResellerId == ResellerToDelete.ResellerID) > 0)
+                        return false;
+                    return true;
                 }
             }catch(ArgumentException e)
             {
@@ -168,5 +169,6 @@ namespace CompanyProject.Controllers
                 throw e;
             }   
         }
+        
     }
 }

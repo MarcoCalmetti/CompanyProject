@@ -34,6 +34,13 @@ namespace CompanyProject.Views
             InitializeComponent();
         }
 
+        public AddEditOrderView(OrderHeaderView Oh, bool ShowMode)
+        {
+            vm = new AddEditOrderViewModel(Oh,true);
+            DataContext = vm;
+            InitializeComponent();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Do you want to save these changes?", "Save", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -52,5 +59,11 @@ namespace CompanyProject.Views
         {
             Close();
         }
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+
     }
 }

@@ -39,7 +39,8 @@ namespace CompanyProject.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            vm.Confirm();
+            if (MessageBox.Show("Do you want to save the changes?", "Save", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                vm.Confirm();
             Close();
         }
 

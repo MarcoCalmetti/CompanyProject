@@ -12,6 +12,20 @@ namespace CompanyProject.ViewModels
 
         private Reseller add_reseller;
 
+        private string _idLabelVisibility;
+
+        public string IdLabelVisibility
+        {
+            get { return _idLabelVisibility; }
+            set { _idLabelVisibility = value; }
+        }
+
+        private string _editNewResellerString;
+        public string EditNewResellerString
+        {
+            get { return _editNewResellerString; }
+            set { _editNewResellerString = value; }
+        }
         public Reseller AddReseller
         {
             get { return add_reseller; }
@@ -25,12 +39,16 @@ namespace CompanyProject.ViewModels
         public AddEditResellerViewModel()
         {
             EditMode = false;
+            EditNewResellerString = "Add Reseller";
+            _idLabelVisibility = "";
             AddReseller = new Reseller();
         }
 
         public AddEditResellerViewModel(Reseller r)
         {
+            _idLabelVisibility = "ID: " + r.ResellerID;
             EditMode = true;
+            EditNewResellerString = "Edit Reseller";
             AddReseller = new Reseller();
             AddReseller.ResellerID = r.ResellerID;
             AddReseller.Address = r.Address;

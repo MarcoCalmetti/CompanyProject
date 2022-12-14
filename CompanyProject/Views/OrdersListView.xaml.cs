@@ -86,9 +86,14 @@ namespace CompanyProject.Views
             vm.EndProduction();
         }
 
+        private void ShowOrder_Click(object sender, RoutedEventArgs e)
+        {
+            vm.ShowOrder();
+        }
+
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            
         }
+
     }
 }

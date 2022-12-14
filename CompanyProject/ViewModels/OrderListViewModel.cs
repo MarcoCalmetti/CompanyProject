@@ -152,6 +152,13 @@ namespace CompanyProject.ViewModels
             await Initialize();
         }
 
+        public async Task ShowOrder()
+        {
+            AddEditOrderView AEO = new AddEditOrderView(SelectedOrder,true);
+            AEO.ShowDialog();
+            await Initialize();
+        }
+
         public async Task DeleteOrder()
         {
             await OrdersController.DeleteOrder(SelectedOrder);

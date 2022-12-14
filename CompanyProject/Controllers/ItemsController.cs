@@ -10,20 +10,29 @@ namespace CompanyProject.Controllers
 {
     class ItemsController 
     {
-        public async static Task<List<Item>> GetAll(string Name, string Code, int page, int pageSize)
+        public async static Task<List<Item>> GetAll(string Name, string Code, string OrderBy, int page, int pageSize)
         {
             try
             {
                 using (CompanyContext context = new CompanyContext())
                 {
-                    var x = await context.Items
+                    var x = context.Items
                         .Where(s => !String.IsNullOrEmpty(Name) ? s.Name.Contains(Name) : true)
                         .Where(s => !String.IsNullOrEmpty(Code) ? s.Code.Contains(Code) : true)
-                        .OrderBy(s => s.Id)
-                        .Skip((page - 1) * pageSize)
-                        .Take(pageSize)
-                        .ToListAsync();
-                    return x;
+                        .OrderBy(s => s.Id);
+                        
+                    if(OrderBy != null)
+                    {
+                        if (OrderBy == "Alphabetical Order")
+                            x = x.OrderBy(s => s.Name);
+                        if (OrderBy == "Descending Price")
+                            x = x.OrderByDescending(s => s.Price);
+                        if (OrderBy == "Ascending Price")
+                            x = x.OrderBy(s => s.Price);
+                    }
+
+                    return await x.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
 
                 }
             }

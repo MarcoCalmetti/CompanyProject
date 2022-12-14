@@ -15,6 +15,20 @@ namespace CompanyProject.ViewModels
         #region Properties
         private List<Item> itemlist;
 
+        private string _showModeVisibility;
+        public string ShowModeVisibility
+        {
+            get { return _showModeVisibility; }
+            set { _showModeVisibility = value; NotifyPropertyChanged("ShowModeVisibility"); }
+        }
+
+
+        private bool _showMode;
+        public bool ShowMode
+        {
+            get { return _showMode; }
+            set { _showMode = value; NotifyPropertyChanged("ShowMode"); }
+        }
         public List<Item> ItemList
         {
             get { return itemlist; }
@@ -35,7 +49,7 @@ namespace CompanyProject.ViewModels
             get { return _editAddLabel; }
             set { _editAddLabel = value; NotifyPropertyChanged("EditAddLabel"); }
         }
-
+        public string SelectedOrderId { get; set; }
 
         private string note;
 
@@ -52,6 +66,9 @@ namespace CompanyProject.ViewModels
         #region Constructor
         public AddEditOrderViewModel()
         {
+            SelectedOrderId = "";
+            ShowModeVisibility = "Visible";
+            ShowMode = false;
             editmode = false;
             _editAddLabel = "Add New Order";
             InitializeNewOrder();
@@ -59,8 +76,22 @@ namespace CompanyProject.ViewModels
 
         public AddEditOrderViewModel(OrderHeaderView Oh)
         {
+            SelectedOrderId = "ID: " + Oh.OrderHeaderId;
+            ShowModeVisibility = "Visible";
+            ShowMode = false;
             editmode = true;
             _editAddLabel = "Edit Order";
+            SelectedOrder = Oh;
+            InitializeEditOrder(SelectedOrder);
+        }
+
+        public AddEditOrderViewModel(OrderHeaderView Oh, bool showMode)
+        {
+            SelectedOrderId = "ID: " + Oh.OrderHeaderId;
+            ShowModeVisibility = "Hidden";
+            editmode = false;
+            ShowMode = true;
+            _editAddLabel = "Show Order";
             SelectedOrder = Oh;
             InitializeEditOrder(SelectedOrder);
         }
