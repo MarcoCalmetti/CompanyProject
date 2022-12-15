@@ -43,10 +43,11 @@ namespace CompanyProject.Models
     }
 
     public class OrderRowMetaData
-    {
+    {//grandezze uguali al db
         public int OrderRowId { get; set; }
         public Nullable<int> OrderHeaderId { get; set; }
         public Nullable<int> ItemId { get; set; }
+        [Range(0, 1000000, ErrorMessage = "The quantity must be 0 or more")]
         public int Quantity { get; set; }//>=0
         public double UnitPrice { get; set; }
     }

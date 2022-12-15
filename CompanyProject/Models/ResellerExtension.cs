@@ -39,21 +39,28 @@ namespace CompanyProject.Models
     }
 
     public class ResellerMetaData
-    {
+    {//grandezze uguali al db
         public int ResellerID { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]// max 30
+        [MaxLength(1000, ErrorMessage = "Max 1000 graphics")]
+        [Required(ErrorMessage = "Required Field")]//max 1000 caratteri
         public string BusinessName { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]//max 20 caratteri (il vat non è uguale in tutti gli stati ma non è mai più di 20 caratteri)
+        [StringLength(11)]
+        [Required(ErrorMessage = "Required Field")]//11 caratteri
         public string VAT { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]//max  30
+        [MaxLength(100, ErrorMessage = "Max 100 graphics")]
+        [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string Address { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]//max 30
+        [MaxLength(100, ErrorMessage = "Max 100 graphics")]
+        [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string City { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]//max 30
+        [MaxLength(100, ErrorMessage = "Max 100 graphics")]
+        [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string PostalCode { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]//max 30
+        [MaxLength(100, ErrorMessage = "Max 100 graphics")]
+        [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string Mail { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]//lunghezza 13 caratteri (3 di prefisso(+NN), 10 di numero)
+        [MaxLength(100, ErrorMessage = "Max 100 graphics")]
+        [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string TelephoneNumber { get; set; }
     }
 }

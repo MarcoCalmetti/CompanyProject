@@ -38,27 +38,17 @@ namespace CompanyProject.Models
 
     }
 
-    [DataContract]
     public class OrderHeaderMetaData
-    {
-        [DataMember]
+    {//grandezze uguali al db
         public int OrderHeaderId { get; set; }
-        [DataMember]
         public Nullable<int> ResellerId { get; set; }
-        [DataMember]
         public Nullable<System.DateTime> OrderDate { get; set; }
-        [DataMember]
         public Nullable<int> OrderStatus { get; set; }
-        [DataMember]
         public System.DateTime OrderReceipt { get; set; }
-        [DataMember]
         public Nullable<System.DateTime> ProductionStartDate { get; set; }
-        [DataMember]
         public Nullable<System.DateTime> ProductionEndDate { get; set; }
-        [DataMember]
         public Nullable<int> SalesOrderReference { get; set; }
-        [DataMember]
+        [MaxLength(100, ErrorMessage = "Max 100 graphics")]
         public string Note { get; set; }//max 100, non è required
     }
-
 }
