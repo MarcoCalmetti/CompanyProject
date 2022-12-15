@@ -58,7 +58,7 @@ namespace CompanyProject.Models
         [DataMember]
         public Nullable<int> SalesOrderReference { get; set; }
         [DataMember]
-        public string Note { get; set; }
+        public string Note { get; set; }//max 100, non è required
     }
 
 }

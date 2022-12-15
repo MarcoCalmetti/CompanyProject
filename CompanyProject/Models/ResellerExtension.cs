@@ -41,19 +41,19 @@ namespace CompanyProject.Models
     public class ResellerMetaData
     {
         public int ResellerID { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]
+        [Required(ErrorMessage = "Campo obbligatorio")]// max 30
         public string BusinessName { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]
+        [Required(ErrorMessage = "Campo obbligatorio")]//max 20 caratteri (il vat non è uguale in tutti gli stati ma non è mai più di 20 caratteri)
         public string VAT { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]
+        [Required(ErrorMessage = "Campo obbligatorio")]//max  30
         public string Address { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]
+        [Required(ErrorMessage = "Campo obbligatorio")]//max 30
         public string City { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]
+        [Required(ErrorMessage = "Campo obbligatorio")]//max 30
         public string PostalCode { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]
+        [Required(ErrorMessage = "Campo obbligatorio")]//max 30
         public string Mail { get; set; }
-        [Required(ErrorMessage = "Campo obbligatorio")]
+        [Required(ErrorMessage = "Campo obbligatorio")]//lunghezza 13 caratteri (3 di prefisso(+NN), 10 di numero)
         public string TelephoneNumber { get; set; }
     }
 }
