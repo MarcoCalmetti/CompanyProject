@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,8 +10,32 @@ using System.Threading.Tasks;
 namespace CompanyProject.Models
 {
     [MetadataTypeAttribute(typeof(OrderHeaderMetaData))]
-    public partial class OrderHeader
+    public partial class OrderHeader : IDataErrorInfo
     {
+        public string this[string columnName]
+        {
+            get
+            {
+                ValidationContext valContext = new ValidationContext(new OrderHeaderMetaData())
+                {
+                    MemberName = columnName
+                };
+
+                List<ValidationResult> validationResults = new List<ValidationResult>();
+
+                if (Validator.TryValidateProperty(
+                        GetType().GetProperty(columnName).GetValue(this),
+                        valContext,
+                        validationResults))
+                    return "";
+
+                return validationResults.First().ErrorMessage;
+            }
+        }
+
+        private string _error;
+        public string Error => _error;
+
     }
 
     [DataContract]
@@ -34,12 +59,6 @@ namespace CompanyProject.Models
         public Nullable<int> SalesOrderReference { get; set; }
         [DataMember]
         public string Note { get; set; }
-
-        //public virtual OrderState OrderState { get; set; }//virtual?
-        //public virtual Reseller Reseller { get; set; }//virtual?
-        //public virtual ICollection<OrderRow> OrderRows { get; set; }
-        //questo in teoria non serve validarlo, provare
-
     }
 
 }

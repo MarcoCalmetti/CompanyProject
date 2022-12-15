@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,8 +10,32 @@ using System.Threading.Tasks;
 namespace CompanyProject.Models
 {
     [MetadataTypeAttribute(typeof(OrderRowMetaData))]
-    public partial class OrderRowExtension
+    public partial class OrderRow : IDataErrorInfo
     {
+        public string this[string columnName]
+        {
+            get
+            {
+                ValidationContext valContext = new ValidationContext(new OrderRowMetaData())
+                {
+                    MemberName = columnName
+                };
+
+                List<ValidationResult> validationResults = new List<ValidationResult>();
+
+                if (Validator.TryValidateProperty(
+                        GetType().GetProperty(columnName).GetValue(this),
+                        valContext,
+                        validationResults))
+                    return "";
+
+                return validationResults.First().ErrorMessage;
+            }
+        }
+
+        private string _error;
+        public string Error => _error;
+
     }
 
     public class OrderRowMetaData
@@ -22,10 +47,6 @@ namespace CompanyProject.Models
         [Required(ErrorMessage = "Campo obbligatorio")]
         public int Quantity { get; set; }
 
-        [Required(ErrorMessage = "Campo obbligatorio")]
         public double UnitPrice { get; set; }
-
-        //public virtual Item Item { get; set; } //virtual?
-        //public virtual OrderHeader OrderHeader { get; set; }//virtual?
     }
 }
