@@ -22,6 +22,8 @@ namespace CompanyProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int i = 0; 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,6 +50,30 @@ namespace CompanyProject
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // fa in modo che premendo in quasi ogni punto della window possa spostarla 
+            {
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    DragMove();
+                }
+
+            }
+        }
+
+        private void Button_Click_Resize(object sender, RoutedEventArgs e)
+        { //ingrandisce la finestra o la normalizza
+            i++;
+            if (i % 2 != 0) this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal; 
+        }
+
+        private void Minimize(object sender, RoutedEventArgs e)
+        {//minimizza la finestra ad icona
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

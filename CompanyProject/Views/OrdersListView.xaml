@@ -39,12 +39,12 @@
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="0"  HorizontalAlignment="Center">Reseller Name:</Label>
         <TextBox Style="{StaticResource menuTextBox}" x:Name="tbResellerName" Text= "{Binding ResellerNameFilter, UpdateSourceTrigger=PropertyChanged}"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="23,23,20.6,20.6"></TextBox>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top"  HorizontalAlignment="Center" >Order Status:</Label>
-        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbOrderStatus" ItemsSource="{Binding ListStatus}" SelectedItem="{Binding SelectedStatus}" Grid.Column="2" Grid.Row="1"  Margin="21.8,22,22,21.6"></ComboBox>
+        <ComboBox IsReadOnly="True" Style="{StaticResource menuComboBox}" x:Name="cbOrderStatus" ItemsSource="{Binding ListStatus}" SelectedItem="{Binding SelectedStatus}" Grid.Column="2" Grid.Row="1"  Margin="23.8,22,20,21.6"></ComboBox>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top" Margin="9,1,8.6,0" HorizontalAlignment="Center">Reseller ID:</Label>
-        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbResellerId" ItemsSource="{Binding ResellersIDList}" SelectedItem="{ Binding SelectedID}"  Grid.Column="3" Grid.Row="1"  Margin="21.8,22,23,21.6"></ComboBox>
+        <ComboBox IsReadOnly="True" Style="{StaticResource menuComboBox}" x:Name="cbResellerId" ItemsSource="{Binding ResellersIDList}" SelectedItem="{ Binding SelectedID}"  Grid.Column="3" Grid.Row="1"  Margin="21.8,22,23,21.6"></ComboBox>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="4" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.ColumnSpan="2">Order By:</Label>
 
-        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbOrderBy" ItemsSource="{Binding OrderByList}" SelectedItem="{ Binding SelectedOrderBy}"  Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"  Margin="22,22,22.6,21.6"></ComboBox>
+        <ComboBox IsReadOnly="True" Style="{StaticResource menuComboBox}" x:Name="cbOrderBy" ItemsSource="{Binding OrderByList}" SelectedItem="{ Binding SelectedOrderBy}"  Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"  Margin="22,22,22.6,21.6"></ComboBox>
 
         <Button Style="{StaticResource menuButton}" x:Name="bResetFiltersOL" Grid.Column="6" Grid.Row="1" Margin="19.8,20,19,19.6" Click="bResetFiltersOL_Click">
             <TextBlock Style="{StaticResource menuTextBlock}">Reset Filter</TextBlock>

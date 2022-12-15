@@ -6,25 +6,23 @@
         xmlns:local="clr-namespace:CompanyProject" xmlns:viewmodels="clr-namespace:CompanyProject.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Icon="IMGS\Cattura.PNG"
-        Title="MainWindow" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" ResizeMode="CanResize" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
 
 
-    <Grid>
+    <Grid MouseDown="Grid_MouseDown">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="107*"/>
+            <RowDefinition Height="134*"/>
+            <RowDefinition Height="134*"/>
+            <RowDefinition Height="134*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.RowSpan="4" Background="#023e7d" CornerRadius="10 0 0 10">
+        <Border Grid.RowSpan="5" Grid.Column="0" Background="#023e7d" CornerRadius="10 0 0 10" Grid.ColumnSpan="1" >
             <StackPanel  Grid.RowSpan="4">
-
-
                 <StackPanel>
 
                     <Border CornerRadius="10"  Height="30"  HorizontalAlignment="Center" Width="30" Margin="0,30,0,0">
@@ -38,29 +36,29 @@
 
                     </Border>
                     <StackPanel>
-                        <TextBlock Style="{StaticResource menuTextBlock}" HorizontalAlignment="Center" FontSize="15" Margin="0,3,0,0" Text="CompanyApp © | Relese 1.0"></TextBlock>
+                        <TextBlock Style="{StaticResource menuTextBlock}" Margin="0 10 0 10" HorizontalAlignment="Center" FontSize="15"  Text="CompanyApp © | Relese 1.0"></TextBlock>
                     </StackPanel>
                 </StackPanel>
 
 
-                <Separator Height="0.7" Margin="15 15 15 20" Background="White" />
+                <Separator Height="0.6"  Background="White" HorizontalAlignment="Center" Width="145" />
 
-                <Button Click="Button_Click" Style="{StaticResource menuButton}">
-                    <StackPanel Margin="0,0,0,0.4" Grid.ColumnSpan="2">
+                <Button Margin="0,10,0,0" Click="Button_Click" Style="{StaticResource menuButton}">
+                    <StackPanel>
                         <TextBlock Style="{StaticResource menuTextBlock}"><Run Text="Resellers"/>
                             <Image Height="15" Width="14" Margin="0 1 0 0" Source="/Views/IMGS/hosting.png" />
                         </TextBlock>
                     </StackPanel>
 
                 </Button>
-                <Button Click="Button_Click_1" Style="{StaticResource menuButton}">
+                <Button Click="Button_Click_1" Style="{StaticResource menuButton}" Margin="0,0,0,0" >
                     <StackPanel>
                         <TextBlock  Style="{StaticResource menuTextBlock}"><Run Text="Orders"/>
                             <Image Height="14" Width="12" Margin="0 1 0 0" Source="/Views/IMGS/box.png" />
                         </TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Click="Button_Click_2" Style="{StaticResource menuButton}" >
+                <Button Click="Button_Click_2" Style="{StaticResource menuButton}" Margin="0" >
                     <StackPanel>
                         <TextBlock  Style="{StaticResource menuTextBlock}"><Run Text="Items"/>
                         <Image Height="17" Width="14" Source="/Views/IMGS/check-list.png" />
@@ -82,9 +80,12 @@
             </Image.Source>
         </Image>-->
 
-        <Border Background="#e2eafc" CornerRadius="0 10 10 0" Grid.Column="1" Grid.RowSpan="4">
+        <Border Background="#e2eafc" CornerRadius="0 10 10 0" Grid.Column="1" Grid.RowSpan="5" Margin="0.4,0,0,0.2">
             <Frame  x:Name="NavigationFrame" Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Source="./ResellersListView.xaml" NavigationUIVisibility="Hidden" ></Frame>
         </Border>
-        <Button Style="{StaticResource menuButtonClose}" Grid.Column="3" Click="Button_Click_Close">X</Button>
+        <Button Style="{StaticResource menuButtonClose}" Grid.Column="1" Click="Button_Click_Close" Grid.RowSpan="2">X</Button>
+        <Button Style="{StaticResource menuButtonToggle}" Grid.Column="1" Click="Button_Click_Resize" Margin="0,0,30,0">⎚</Button>
+        <Button Style="{StaticResource menuButtonToggle}" Grid.Column="1" Click="Minimize" Margin="0,0,60,0">_</Button>
+
     </Grid>
 </Window>
