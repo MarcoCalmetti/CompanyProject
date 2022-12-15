@@ -67,8 +67,18 @@ namespace CompanyProject
         private void Button_Click_Resize(object sender, RoutedEventArgs e)
         { //ingrandisce la finestra o la normalizza
             i++;
-            if (i % 2 != 0) this.WindowState = WindowState.Maximized;
-            else this.WindowState = WindowState.Normal; 
+            if (i % 2 != 0)
+            { 
+                this.WindowState = WindowState.Maximized;
+                this.Min_Max.Content = "↙";
+
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+                this.Min_Max.Content = "↗";
+            }
+                
         }
 
         private void Minimize(object sender, RoutedEventArgs e)
