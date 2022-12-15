@@ -27,19 +27,19 @@
             <Label Style="{StaticResource menuLabel}" Content="{Binding IdLabelVisibility}"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0" ></Label>
             <Label Style="{StaticResource menuLabel}" Content="{Binding AddReseller.Id}"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="42,17.4,146.4,10.4" ></Label>
             <Label Style="{StaticResource menuLabel}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Business Name:</Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.BusinessName}" Margin="20" Grid.Row="2" Grid.Column="0" Height="40"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.BusinessName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="20" Grid.Row="2" Grid.Column="0" Height="40"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Address:</Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.Address}" Margin="20" Grid.Row="2" Grid.Column="1" Height="40"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="20" Grid.Row="2" Grid.Column="1" Height="40"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >City:</Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.City}" Margin="20" Grid.Row="2" Grid.Column="2" Height="40"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.City, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="20" Grid.Row="2" Grid.Column="2" Height="40"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Postal Code:</Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.PostalCode}" Margin="20" Grid.Row="2" Grid.Column="3" Height="40"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.PostalCode, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="20" Grid.Row="2" Grid.Column="3" Height="40"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >VAT:</Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.VAT}" Margin="20" Grid.Row="3" Grid.Column="0"  Height="40"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.VAT, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="20" Grid.Row="3" Grid.Column="0"  Height="40"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Mail:</Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.Mail}" Margin="20" Grid.Row="3" Grid.Column="1" Height="40"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.Mail, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="20" Grid.Row="3" Grid.Column="1" Height="40"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >Telephone Number:</Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.TelephoneNumber}" Margin="20" Grid.Row="3" Grid.Column="2" Height="40"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.TelephoneNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Margin="20" Grid.Row="3" Grid.Column="2" Height="40"></TextBox>
             <Label Style="{StaticResource menuLabel}" Grid.Row="3" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20" >API Reseller ID:</Label>
             <TextBox Style="{StaticResource menuTextBoxType}" Text= "{Binding AddReseller.ResellerIdAPI}" Margin="20" Grid.Row="3" Grid.Column="3" Height="40"></TextBox>
 

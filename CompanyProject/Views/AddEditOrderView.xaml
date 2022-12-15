@@ -38,12 +38,12 @@
                     <DataGridTextColumn Binding="{Binding Volume}" IsReadOnly="True" Header=" Volume " />
                     <DataGridTextColumn Binding="{Binding Price}" IsReadOnly="True" Header=" Unit Price " />
                     <DataGridTextColumn Binding="{Binding LeadTime}" IsReadOnly="True" Header=" Lead Time " />
-                    <DataGridTextColumn Binding="{Binding Quantity}" IsReadOnly="{Binding ShowMode}" Header=" Quantity " Foreground="Blue" />
+                    <DataGridTextColumn Binding="{Binding Quantity, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding ShowMode}" Header=" Quantity " Foreground="Blue" />
                 </DataGrid.Columns>
             </DataGrid>
 
             <Label Style="{StaticResource menuLabel}" Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" Margin="82,0,82,39.6" HorizontalAlignment="Center" Content="Notes:" Grid.RowSpan="2"></Label>
-            <TextBox Style="{StaticResource menuTextBoxType}" IsReadOnly="{Binding ShowMode}" Text="{Binding Notes}" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5" Height="55" Width="250" HorizontalAlignment="Right"></TextBox>
+            <TextBox Style="{StaticResource menuTextBoxType}" IsReadOnly="{Binding ShowMode}" Text="{Binding Notes, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="5" Height="55" Width="250" HorizontalAlignment="Right"></TextBox>
             <Label Style="{StaticResource menuLabel}" Visibility="{Binding ShowModeVisibility}" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="5" HorizontalAlignment="Center">Do you want to confirm the order?</Label>
             <Button Style="{StaticResource menuButton}"  Visibility="{Binding ShowModeVisibility}" Grid.Column="2" Grid.Row="4" VerticalAlignment="Top" Margin="10" HorizontalAlignment="Right" Width="80" Click="Button_Click">
                 <TextBlock Style="{StaticResource menuTextBlock}">Yes</TextBlock>
