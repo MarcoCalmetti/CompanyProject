@@ -127,6 +127,7 @@
       <DependentUpon>CompanyDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemExpansion.cs" />
+    <Compile Include="Models\ItemExtension.cs" />
     <Compile Include="Models\OrderHeader.cs">
       <DependentUpon>CompanyDatabase.tt</DependentUpon>
     </Compile>

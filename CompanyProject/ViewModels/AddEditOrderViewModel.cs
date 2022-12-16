@@ -21,7 +21,18 @@ namespace CompanyProject.ViewModels
             get { return _showModeVisibility; }
             set { _showModeVisibility = value; NotifyPropertyChanged("ShowModeVisibility"); }
         }
-
+        private bool _isEnabledConfirmButton;
+        public bool IsEnabledConfirmButton
+        {
+            get
+            {
+                return _isEnabledConfirmButton;
+            }
+            set
+            {
+                _isEnabledConfirmButton = value; NotifyPropertyChanged("IsEnabledConfirmButton");
+            }
+        }
 
         private bool _showMode;
         public bool ShowMode
@@ -107,6 +118,11 @@ namespace CompanyProject.ViewModels
         public async Task InitializeNewOrder()
         {
             ItemList = await OrdersController.GetAllOrdersRows();
+        }
+
+        public void ValdationChecker()
+        {
+            IsEnabledConfirmButton = OrdersController.ValidationChecker(itemlist);
         }
 
         public async Task SaveChanges()

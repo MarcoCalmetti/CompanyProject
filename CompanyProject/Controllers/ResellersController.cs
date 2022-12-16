@@ -126,7 +126,7 @@ namespace CompanyProject.Controllers
         {
             try
             {
-                if(!checkForDelete(ResellerToDelete))
+                if(checkForDelete(ResellerToDelete))
                 {
                     using (CompanyContext context = new CompanyContext())
                     {
@@ -169,6 +169,13 @@ namespace CompanyProject.Controllers
                 throw e;
             }   
         }
+
+        public static bool ValidationChecker(Reseller RTC)
+        {
+            return RTC.ErrorChecker.ContainsValue(true);
+        }
         
     }
+
+
 }

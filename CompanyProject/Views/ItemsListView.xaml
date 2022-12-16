@@ -30,18 +30,20 @@
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="55,1,55,0" HorizontalAlignment="Center" >Code:</Label>
         <TextBox Style="{StaticResource menuTextBox}" x:Name="tbItemCode"  Grid.Column="1" Grid.Row="1"  Margin="22" Text="{Binding FilterItemCode, UpdateSourceTrigger=PropertyChanged}"  ></TextBox>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="23,1,23,0" HorizontalAlignment="Center">Order By</Label>
-        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbOrderBy" ItemsSource="{Binding OrderByList}" SelectedItem="{ Binding SelectedOrderBy}"  Grid.Column="2" Grid.Row="1"  Margin="22,22,22.6,21.6"></ComboBox>
+        <ComboBox Style="{StaticResource menuComboBox}" x:Name="cbOrderBy" IsReadOnly="True" ItemsSource="{Binding OrderByList}" SelectedItem="{ Binding SelectedOrderBy}"  Grid.Column="2" Grid.Row="1"  Margin="22,22,22.6,21.6"></ComboBox>
         <Button Style="{StaticResource menuButton}" x:Name="bResetFiltersRL" Grid.Column="3" Grid.Row="1" Margin="20" Click="bResetFiltersRL_Click">
             <TextBlock Style="{StaticResource menuTextBlock}"> Reset Filters</TextBlock>
         </Button>
         <DataGrid x:Name="ItemsList" IsReadOnly="True" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Margin="20" AutoGenerateColumns="False" ItemsSource="{Binding ListItems}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header=" Item Code " Binding="{Binding Code}"/>
-                <DataGridTextColumn Header=" Item Name " Binding="{Binding LeadTime}"/>
-                <DataGridTextColumn Header=" Price " Binding="{Binding Price, StringFormat='0.00 €'}"/>
-                <DataGridTextColumn Header=" Lead Time " Binding="{Binding Name}"/>
+                <DataGridTextColumn Header=" Item Name " Binding="{Binding Name}"/>
                 <DataGridTextColumn Header=" Weight " Binding="{Binding Weight, StringFormat='0.00 Kg'}" />
                 <DataGridTextColumn Header=" Volume " Binding="{Binding Volume}"/>
+                <DataGridTextColumn Header=" Lead Time " Binding="{Binding LeadTime}"/>
+                <DataGridTextColumn Header=" Price " Binding="{Binding Price, StringFormat='0.00 €'}"/>
+                
+                
             </DataGrid.Columns>
         </DataGrid>
         <Button Style="{StaticResource menuButton}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="5,5,0,0" HorizontalAlignment="Left" Width="80" IsEnabled="{Binding FirstPageButtonIsEnabled}" Click="Button_Click">

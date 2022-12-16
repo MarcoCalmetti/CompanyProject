@@ -27,14 +27,22 @@ namespace CompanyProject.Models
                         GetType().GetProperty(columnName).GetValue(this),
                         valContext,
                         validationResults))
+                {
+                    ErrorChecker[columnName] = false;
                     return "";
-
+                }
+                if(!ErrorChecker.ContainsKey(columnName))
+                    ErrorChecker.Add(columnName, true);
+                else
+                    ErrorChecker[columnName] = true;
                 return validationResults.First().ErrorMessage;
             }
         }
 
         private string _error;
         public string Error => _error;
+
+        public Dictionary<string, bool> ErrorChecker = new Dictionary<string, bool>();
 
     }
 
@@ -56,9 +64,11 @@ namespace CompanyProject.Models
         [MaxLength(100, ErrorMessage = "Max 100 graphics")]
         [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string PostalCode { get; set; }
+        [EmailAddress]
         [MaxLength(100, ErrorMessage = "Max 100 graphics")]
         [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string Mail { get; set; }
+        [Phone]
         [MaxLength(100, ErrorMessage = "Max 100 graphics")]
         [Required(ErrorMessage = "Required Field")]//max 100 caratteri
         public string TelephoneNumber { get; set; }

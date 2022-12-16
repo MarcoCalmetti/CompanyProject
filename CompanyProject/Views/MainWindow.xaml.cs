@@ -22,10 +22,11 @@ namespace CompanyProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int i = 0; 
+        private bool MinimizeWindow;
 
         public MainWindow()
         {
+            MinimizeWindow = true;
             InitializeComponent();
         }
 
@@ -66,12 +67,11 @@ namespace CompanyProject
 
         private void Button_Click_Resize(object sender, RoutedEventArgs e)
         { //ingrandisce la finestra o la normalizza
-            i++;
-            if (i % 2 != 0)
+            MinimizeWindow = !MinimizeWindow;
+            if (!MinimizeWindow)
             { 
                 this.WindowState = WindowState.Maximized;
                 this.Min_Max.Content = "↙";
-
             }
             else
             {

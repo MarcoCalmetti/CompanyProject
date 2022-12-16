@@ -470,5 +470,13 @@ namespace CompanyProject.Controllers
                 }
             }
         }
+
+        public static bool ValidationChecker(List<Item> ItemList)
+        {
+            foreach (Item i in ItemList)
+                if (i.ErrorChecker == true)
+                    return false;
+            return true;
+        }
     }
 }

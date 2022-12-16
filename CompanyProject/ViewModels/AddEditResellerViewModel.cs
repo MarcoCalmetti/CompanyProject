@@ -8,6 +8,18 @@ namespace CompanyProject.ViewModels
     {
         #region Properties
 
+        private bool _isEnabledConfirmButton;
+        public bool IsEnabledConfirmButton
+        {
+            get {
+                return _isEnabledConfirmButton;
+            }
+            set
+            {
+                _isEnabledConfirmButton = value; NotifyPropertyChanged("IsEnabledConfirmButton");
+            } 
+        }
+
         private bool EditMode;
 
         private Reseller add_reseller;
@@ -38,6 +50,7 @@ namespace CompanyProject.ViewModels
 
         public AddEditResellerViewModel()
         {
+            IsEnabledConfirmButton = false;
             EditMode = false;
             EditNewResellerString = "Add Reseller";
             _idLabelVisibility = "";
@@ -46,6 +59,7 @@ namespace CompanyProject.ViewModels
 
         public AddEditResellerViewModel(Reseller r)
         {
+            IsEnabledConfirmButton = false;
             _idLabelVisibility = "ID: " + r.ResellerID;
             EditMode = true;
             EditNewResellerString = "Edit Reseller";
@@ -58,7 +72,7 @@ namespace CompanyProject.ViewModels
             AddReseller.Mail = r.Mail;
             AddReseller.PostalCode = r.PostalCode;
             AddReseller.TelephoneNumber = r.TelephoneNumber;
-
+            AddReseller.ResellerIdAPI = r.ResellerIdAPI;
         }
         #endregion
 
@@ -70,8 +84,16 @@ namespace CompanyProject.ViewModels
                 ResellersController.Update(AddReseller);
             else
                 ResellersController.Add(AddReseller);
+
         }
 
+        public void ValidationChecker()
+        {
+            if (ResellersController.ValidationChecker(AddReseller))
+                IsEnabledConfirmButton = false;
+            else
+                IsEnabledConfirmButton = true;
+        }
 
 
         #endregion

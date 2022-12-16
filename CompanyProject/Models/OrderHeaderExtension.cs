@@ -27,15 +27,23 @@ namespace CompanyProject.Models
                         GetType().GetProperty(columnName).GetValue(this),
                         valContext,
                         validationResults))
+                {
+                    ErrorChecker[columnName] = false;
                     return "";
-
+                }
+                if (!ErrorChecker.ContainsKey(columnName))
+                    ErrorChecker.Add(columnName, true);
+                else
+                    ErrorChecker[columnName] = true;
                 return validationResults.First().ErrorMessage;
+
             }
         }
 
         private string _error;
         public string Error => _error;
 
+        public Dictionary<string, bool> ErrorChecker = new Dictionary<string, bool>();
     }
 
     public class OrderHeaderMetaData

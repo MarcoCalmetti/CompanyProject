@@ -74,5 +74,11 @@ namespace CompanyProject.Views
 
             }
         }
+
+
+        private void Grid_MouseMove(object sender, MouseEventArgs e)
+        {
+            vm.ValdationChecker();
+        }
     }
 }

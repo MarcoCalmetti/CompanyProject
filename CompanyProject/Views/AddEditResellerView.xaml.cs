@@ -64,5 +64,10 @@ namespace CompanyProject.Views
 
             }
         }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            vm.ValidationChecker();
+        }
     }
 }
