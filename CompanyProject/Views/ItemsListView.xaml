@@ -16,15 +16,15 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100*" />
-            <RowDefinition Height="70*"/>
+            <RowDefinition Height="130" />
+            <RowDefinition Height="90"/>
             <RowDefinition Height="200*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="43*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="43"/>
         </Grid.RowDefinitions>
 
-        <Label Style="{StaticResource menuLabel}" Grid.Row="0" Grid.ColumnSpan="5" FontSize="36" Margin="10,0,0.2,0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left">Items</Label>
+        <Label Style="{StaticResource menuLabel}" Grid.Row="0" Grid.ColumnSpan="5" FontSize="42" Margin="10,0,0.2,0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left">Items</Label>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="40,1,40,0" HorizontalAlignment="Center">Item Name:</Label>
         <TextBox Style="{StaticResource menuTextBox}" x:Name="tbItemName"  Grid.Column="0" Grid.Row="1" Margin="22" Text="{Binding FilterName, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="55,1,55,0" HorizontalAlignment="Center" >Code:</Label>
@@ -46,21 +46,23 @@
                 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Style="{StaticResource menuButton}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="5,5,0,0" HorizontalAlignment="Left" Width="80" IsEnabled="{Binding FirstPageButtonIsEnabled}" Click="Button_Click">
-            <TextBlock Style="{StaticResource menuTextBlock}">← ←</TextBlock>
-        </Button>
-        <Button Style="{StaticResource menuButton}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0, 5, 20, 0" HorizontalAlignment="Right" Width="80" IsEnabled="{Binding PreviousPageButtonIsEnabled}" Click="Button_Click_1">
-            <TextBlock Style="{StaticResource menuTextBlock}">←</TextBlock>
-        </Button>
-        <Button Style="{StaticResource menuButton}" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="20, 5, 0, 0"   HorizontalAlignment="Left" Width="80" IsEnabled="{Binding NextPageButtonIsEnabled}" Click="Button_Click_2">
-            <TextBlock Style="{StaticResource menuTextBlock}">→</TextBlock>
-        </Button>
-        <Button Style="{StaticResource menuButton}" Grid.Column="2" Grid.Row="3" VerticalAlignment="Top" Margin="0,5,5,0"  HorizontalAlignment="Right" Width="80" IsEnabled="{Binding LastPageButtonIsEnabled}" Click="Button_Click_3">
-            <TextBlock Style="{StaticResource menuTextBlock}">→ →</TextBlock>
-        </Button>
-        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="5,5,5,0" Content="{Binding StringLabelPagina}" Grid.RowSpan="2"/>
 
-
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+            <Button Style="{StaticResource menuButton}" Width="80" Margin="10 0 0 0" IsEnabled="{Binding FirstPageButtonIsEnabled}" Click="Button_Click">
+                <TextBlock Style="{StaticResource menuTextBlock}">← ←</TextBlock>
+            </Button>
+            <Button Style="{StaticResource menuButton}" Width="80" Margin="10 0 0 0" IsEnabled="{Binding PreviousPageButtonIsEnabled}" Click="Button_Click_1">
+                <TextBlock Style="{StaticResource menuTextBlock}">←</TextBlock>
+            </Button>
+            <Button Style="{StaticResource menuButton}" Width="80" Margin="10 0 0 0" IsEnabled="{Binding NextPageButtonIsEnabled}" Click="Button_Click_2">
+                <TextBlock Style="{StaticResource menuTextBlock}">→</TextBlock>
+            </Button>
+            <Button Style="{StaticResource menuButton}" Width="80" Margin="10 0 0 0" IsEnabled="{Binding LastPageButtonIsEnabled}" Click="Button_Click_3">
+                <TextBlock Style="{StaticResource menuTextBlock}">→ →</TextBlock>
+            </Button>
+            
+        </StackPanel>
+        <Label Style="{StaticResource menuLabel}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalContentAlignment="Center" Margin="5,5,5,0" Content="{Binding StringLabelPagina}" Grid.RowSpan="2"/>
     </Grid>
 
 </Page>

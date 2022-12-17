@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -298,7 +299,7 @@ namespace CompanyProject.Controllers
             {
                 using (CompanyContext context = new CompanyContext())
                 {
-                    return await context.OrderStates.Select(s => s.Name).ToListAsync();
+                    return await context.OrderStates.Select(s => s.Name).Where(s=>!s.Contains("Inserito")).ToListAsync();
                 }
             }
             catch (ArgumentException e)
@@ -337,9 +338,8 @@ namespace CompanyProject.Controllers
                 using (CompanyContext context = new CompanyContext())
                 {
                     if (Oh.OrderIdAPI != null)
-                    {
-                        await ModifyStatus(Oh, 30);
-                    }
+                        ModifyStatus(Oh, 30);
+
                     var x = await context.OrderHeaders.FirstOrDefaultAsync(s=>s.OrderHeaderId == Oh.OrderHeaderId);
                     x.OrderStatus = (await context.OrderStates.FirstOrDefaultAsync(s => s.Name == "InProduzione")).Id;
                     x.ProductionStartDate = DateTime.Now;
@@ -364,9 +364,7 @@ namespace CompanyProject.Controllers
                 using (CompanyContext context = new CompanyContext())
                 {
                     if(Oh.OrderIdAPI != null)
-                    {
-                        await ModifyStatus(Oh, 40);
-                    }
+                        ModifyStatus(Oh, 40);
 
                     var x = await context.OrderHeaders.FirstOrDefaultAsync(s => s.OrderHeaderId == Oh.OrderHeaderId);
                     x.OrderStatus = (await context.OrderStates.FirstOrDefaultAsync(s => s.Name == "Prodotto")).Id;
@@ -385,22 +383,13 @@ namespace CompanyProject.Controllers
             }
         }
 
-        private async static Task ModifyStatus(OrderHeaderView Oh, int status)
+        private static void ModifyStatus(OrderHeaderView Oh, int status)
         {
             using (var context = new CompanyContext())
             {
-                //string APIAddress = @"https://webhook.site/040760a8-3476-4188-83d9-d64f4b76be53";
-                string APIAddress = @"https://80.211.144.168/api/v1/orders";
-                string Token = "7sZ3lt3izggf8XTA1M3sKSnALdZl0hPwsd-QNcpSfDpFCFtUHw_Jnq6SdmI9YCaQL00Qvbp4SHxT9oCR4AVNTMqPEQ8DKk4M3tUBLl6dIfS6YPwiHTRnSrwKZrBEi3d9L2gwxMD97qEjlW0aOTP2dPxXh2fzswUimRE2NYJMqn05KoRtjwbhzT4Z83aHR6n3uPXbwWx3mpDj9ARZhSZaBj0qNTLTZj5eISTMT3qhbNX51IQBMFZFhUhS7_RyfOAOwNOUFWPZ2g_ggozNh33Y8e_jySg_wI6yMYwXSXtd8n_awNlFNtMNrmLIQSWSphOZiRJTia5Z6PiaSyiwgfUf6s4vFNeEYy3SmJPhjtfLVlU";
-                var option = new RestClientOptions(APIAddress)
-                {
-                    RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true //verifica il certifcato (ssl/tls) e mettendolo a true, viene certificato
-                };
+                var client = ConnectionToAPI();
 
-                var client = new RestClient(option)
-                {
-                    Authenticator = new JwtAuthenticator(Token)//andrà poi messo nell'app config
-                };
+                var request = new RestRequest();
 
                 var x = new RestRequest(Oh.OrderIdAPI + @"/state");
 
@@ -413,23 +402,31 @@ namespace CompanyProject.Controllers
             }
         }
 
+        private static RestClient ConnectionToAPI()
+        {
+            string APIAddress = ConfigurationManager.ConnectionStrings["APIAddress"].ConnectionString;
+            string Token = ConfigurationManager.ConnectionStrings["TokenAPI"].ConnectionString;
+            var option = new RestClientOptions(APIAddress)
+            {
+                RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true //verifica il certifcato (ssl/tls) e mettendolo a true, viene certificato
+            };
+
+            var client = new RestClient(option)
+            {
+                Authenticator = new JwtAuthenticator(Token)//andrà poi messo nell'app config
+            };
+
+            return client;
+        }
 
         private async static Task GetOrdersFromAPI()
         {
             using (var context = new CompanyContext())
             {
-                string APIAddress = @"https://80.211.144.168/api/v1";
-                string Token = "WQai_A5gCrbI010weecb02SAN9t2YXaSrb0HixAfFk0rtdRR1Ydpf63EU11jDkyAJ-rWpHqD1doWwaf4G4RpnMFoKAPhv4kKFS0MYXR0n29jZ5emu-6_BWa8OcFzylvkDx0SpeUt1U2TAgC9dq2S8NYcVNRupJHg9KOYez0UsRedgTcBagOj1gXtA44pbamNcRMEk8BVOEWMk0xscb1FcHHBAfwXQlQI25LE2n9rnQAMJeZ7ZY-n1vSCEXaPcKcsUwu4sxWIhQu2uSVsvZLnulFSE-DCpUnRkWD-ACyMW7CH_p0tlXIer3QWdPxrrVYDfMMprYtoXzlOlFNnsM7emdGbSJ-T-9VLOCPWe7oxHoA";
-                var option = new RestClientOptions(APIAddress)
-                {
-                    RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true //verifica il certifcato (ssl/tls) e mettendolo a true, viene certificato
-                };
 
-                var client = new RestClient(option)
-                {
-                    Authenticator = new JwtAuthenticator(Token)//andrà poi messo nell'app config
-                };
-                var request = new RestRequest("orders");
+                var client = ConnectionToAPI();
+
+                var request = new RestRequest();
 
                 var response = await client.GetAsync<List<OrderAPI>>(request);
 
@@ -473,9 +470,10 @@ namespace CompanyProject.Controllers
 
         public static bool ValidationChecker(List<Item> ItemList)
         {
-            foreach (Item i in ItemList)
-                if (i.ErrorChecker == true)
-                    return false;
+            if(ItemList != null)
+                foreach (Item i in ItemList)
+                    if (i.ErrorChecker == true)
+                        return false;
             return true;
         }
     }
