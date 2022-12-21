@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CompanyProject.Controllers;
 using CompanyProject.Models;
 using CompanyProject.Views;
@@ -124,10 +125,17 @@ namespace CompanyProject.ViewModels
 
         private async Task LoadData()
         {
-            _totalPages = (int)Math.Ceiling(await OrdersController.GetItemsNumber(ResellerNameFilter, SelectedStatus, SelectedID) / (double)PageSize);
-            ListOrders = await OrdersController.GetAll(ResellerNameFilter, SelectedStatus, SelectedID, SelectedOrderBy, Page, PageSize);
-            checkButton();
-            StringLabelPagina = "Page " + page + " of " + _totalPages;
+            try
+            {
+                _totalPages = (int)Math.Ceiling(await OrdersController.GetItemsNumber(ResellerNameFilter, SelectedStatus, SelectedID) / (double)PageSize);
+                ListOrders = await OrdersController.GetAll(ResellerNameFilter, SelectedStatus, SelectedID, SelectedOrderBy, Page, PageSize);
+                checkButton();
+                StringLabelPagina = "Page " + page + " of " + _totalPages;
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
         public void AzzeraFiltri()
         {

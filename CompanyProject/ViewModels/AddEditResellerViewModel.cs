@@ -1,6 +1,7 @@
 ﻿using CompanyProject.Controllers;
 using CompanyProject.Models;
 using System;
+using System.Windows;
 
 namespace CompanyProject.ViewModels
 {
@@ -80,10 +81,17 @@ namespace CompanyProject.ViewModels
 
         internal void Confirm()
         {
-            if (EditMode)
-                ResellersController.Update(AddReseller);
-            else
-                ResellersController.Add(AddReseller);
+            try
+            {
+                if (EditMode)
+                    ResellersController.Update(AddReseller);
+                else
+                    ResellersController.Add(AddReseller);
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
 
         }
 

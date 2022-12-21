@@ -7,6 +7,7 @@ using CompanyProject.ViewModels;
 using CompanyProject.Models;
 using CompanyProject.Controllers;
 using CompanyProject.Views;
+using System.Windows;
 
 namespace CompanyProject.ViewModels
 {
@@ -127,10 +128,17 @@ namespace CompanyProject.ViewModels
 
         public async Task SaveChanges()
         {
-            if (!editmode)
-                await OrdersController.AddNewOrder(ItemList, Notes);
-            else
-                await OrdersController.UpdateOrder(ItemList, SelectedOrder, Notes);
+            try
+            {
+                if (!editmode)
+                    await OrdersController.AddNewOrder(ItemList, Notes);
+                else
+                    await OrdersController.UpdateOrder(ItemList, SelectedOrder, Notes);
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+           
         }
 
         #endregion

@@ -70,8 +70,8 @@ namespace CompanyProject.Views
         }
         private void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Do you want to delete this Order?", "Delete", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                vm.DeleteOrder();
+            
+            vm.DeleteOrder();
 
         }
 

@@ -34,7 +34,7 @@
         </Grid.RowDefinitions>
 
         <Label Style="{StaticResource menuLabel}" Grid.Row="0" Grid.ColumnSpan="5" FontSize="36" Margin="10,0,0.2,0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left">Orders</Label>
-        <Button Style="{StaticResource menuButton}" x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="39.8,40,41,35" Click="buttNewOrder_Click" >
+        <Button Style="{StaticResource menuButton}" x:Name="buttNewOrder" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="2" Margin="15 40" Click="buttNewOrder_Click" >
             <TextBlock Style="{StaticResource menuTextBlock}">Add New Order</TextBlock>
         </Button>
         <Label Style="{StaticResource menuLabel}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="0"  HorizontalAlignment="Center">Reseller Name:</Label>

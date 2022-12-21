@@ -71,12 +71,14 @@ namespace CompanyProject
             if (!MinimizeWindow)
             { 
                 this.WindowState = WindowState.Maximized;
-                this.Min_Max.Content = "↙";
+                this.Min_Max.Content = "❐";
+                
             }
             else
             {
                 this.WindowState = WindowState.Normal;
-                this.Min_Max.Content = "↗";
+                this.Min_Max.Content = "□";
+                
             }
                 
         }

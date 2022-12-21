@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="59ddd3a720be4cbc8cfc75a655cbd16f" Name="Diagram1">
+      <Diagram DiagramId="59ddd3a720be4cbc8cfc75a655cbd16f" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="CompanyProjectModel.Item" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyProjectModel.OrderHeader" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CompanyProjectModel.OrderRow" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CompanyProjectModel.OrderState" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyProjectModel.OrderRow" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CompanyProjectModel.OrderState" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CompanyProjectModel.Reseller" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="CompanyProjectModel.FK__OrderRows__ItemI__66603565" ManuallyRouted="false" />
         <AssociationConnector Association="CompanyProjectModel.FK__OrderHead__Order__628FA481" ManuallyRouted="false" />

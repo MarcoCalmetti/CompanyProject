@@ -5,27 +5,27 @@
              StartupUri="Views/MainWindow.xaml"
             >
     <Application.Resources>
-        <!--<Style TargetType="TextBox">
+        <Style TargetType="{x:Type TextBox}">
 
             <Setter Property="Validation.ErrorTemplate">
                 <Setter.Value>
                     <ControlTemplate>
                         <StackPanel>
-                            <Border BorderThickness="1" CornerRadius="10" BorderBrush="DarkRed">
+                            <Border BorderThickness="1" CornerRadius="10" BorderBrush="blue">
                                 <StackPanel>
                                     <AdornedElementPlaceholder
                         x:Name="errorControl" />
                                 </StackPanel>
                             </Border>
                             <TextBlock Text="{Binding AdornedElement.ToolTip
-                , ElementName=errorControl}" Foreground="Red" />
+                , ElementName=errorControl}" Foreground="blue" />
                         </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="BorderBrush" Value="blue" />
                     <Setter Property="BorderThickness" Value="1" />
                     <Setter Property="ToolTip"
         Value="{Binding RelativeSource={RelativeSource Self}
@@ -33,13 +33,13 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
-                                <Border BorderThickness="1" CornerRadius="100" BorderBrush="Red"/>
+                                <Border BorderThickness="1" CornerRadius="100" BorderBrush="blue"/>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </Trigger>
             </Style.Triggers>
-        </Style>-->
+        </Style>
         
 <!--#region ComboBOX -->
         <Style x:Key="ComboBoxTextBoxStyle" TargetType="{x:Type TextBox}">

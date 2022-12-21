@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CompanyProject.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="{Binding EditAddLabel}" Background="Transparent" WindowStyle="None" BorderThickness="0" ResizeMode="NoResize" Height="450" Width="800">
+      Title="{Binding EditAddLabel}" Background="Transparent" AllowsTransparency="True" WindowStyle="None" BorderThickness="0" ResizeMode="NoResize" Height="450" Width="800">
     <Border Background="#e2eafc" BorderThickness="0" CornerRadius="15" MouseDown="Grid_MouseDown">
         <Grid MouseDown="Grid_MouseDown" MouseMove="Grid_MouseMove">
             <Grid.ColumnDefinitions>
